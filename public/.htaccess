@@ -1,0 +1,12 @@
+Options -MultiViews
+RewriteEngine On
+
+# Exclude requests to /api or /API from rewriting
+
+RewriteCond %{REQUEST_URI} !^/api [NC]
+RewriteCond %{REQUEST_URI} !^/API [NC]
+
+# Rewrite all other requests to index.html
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.html [QSA,L]
