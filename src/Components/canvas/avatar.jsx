@@ -11,10 +11,10 @@ const Avatars = ({ }) => {
       <hemisphereLight intensity={5} groundColor='black' />
       <pointLight intensity={10} />
       <spotLight
-        position={[-20, 50, 10]}
+        position={[0,0,10]}
         angle={0.12}
         penumbra={1}
-        intensity={1}
+        intensity={10}
         castShadow
         shadow-mapSize={1024}
       />
