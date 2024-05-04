@@ -11,11 +11,15 @@ import Training from "./Pages/Training";
 import Profile from "./Pages/Profile";
 import logoWebcup from "./Assets/logoWebcup.png";
 
+import teleport from "./Assets/teleport.mp3";
+
 const queryClient = new QueryClient();
 
 const Dashboard = lazy(() => import("./Pages/Dashboard"));
 const Setting = lazy(() => import("./Pages/Setting"));
 const LandingPage = lazy(() => import("./Pages/LandingPage"));
+const teleportSound = new Audio(teleport);
+const RegisterPage = lazy(() => import("./Pages/RegisterPage"));
 
 const Loading = () => {
   return (
@@ -68,6 +72,10 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: <Profile />,
+  },
+  {
+    path: "/register",
+    element: <RegisterPage />,
   },
 ]);
 
@@ -158,6 +166,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                           href="/"
                           className="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"
                           aria-current="page"
+                          // onClick={() => {
+                          //   teleportSound.loop = false;
+                          //   teleportSound.play();
+                          // }}
                         >
                           Home
                         </a>
@@ -166,6 +178,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                         <a
                           href="/profile"
                           className="block py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                          // onClick={() => {
+                          //   teleportSound.loop = false;
+                          //   teleportSound.play();
+                          // }}
                         >
                           Profile
                         </a>
@@ -174,6 +190,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                         <a
                           href="/training"
                           className="block py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                          // onClick={() => {
+                          //   teleportSound.play();
+                          // }}
                         >
                           Training
                         </a>
@@ -182,6 +201,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                         <a
                           href="/library"
                           className="block py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                          // onClick={() => {
+                          //   teleportSound.play();
+                          // }}
                         >
                           Library
                         </a>
