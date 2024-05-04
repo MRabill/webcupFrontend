@@ -8,8 +8,38 @@ import purpleStone from "../Assets/stones/purple1080.jpg";
 import redStone from "../Assets/stones/redstone1080.jpg";
 import soulStone from "../Assets/stones/soulstones.jpg";
 import StarsCanvas from "../Components/canvas/Stars";
-
+import {
+    Navigate,
+    useNavigate,
+    useQuery,
+    fetchData,
+    url,
+    Lottie,
+    useMutation,
+    postData,
+} from "../../utils";
 const Library = () => {
+    const images = [
+        yellowStone,
+        greenStone,
+        blueStone,
+        purpleStone,
+        redStone,
+        soulStone
+    ];
+    const { isLoading: newsLoading, data: news = [] } = useQuery(
+        ["news"],
+        () => fetchData({ url: url?.GET_NEWS }),
+
+        { refetchOnWindowFocus: false },
+        {
+            onError: (e) => {
+                console.log("Error fetching developers: ", e);
+            },
+        }
+    );
+
+
     const carouselRef = useRef(null);
 
     const prevSlide = () => {
@@ -22,15 +52,9 @@ const Library = () => {
 
     const handleBeforeChange = (from, to) => {
         const background = document.querySelector(".background");
-        const images = [
-            yellowStone,
-            greenStone,
-            blueStone,
-            purpleStone,
-            redStone,
-            soulStone
-        ];
-        background.style.backgroundImage = `url(${images[to]})`;
+        const randomImage = images[to];
+
+        background.style.backgroundImage = `url(${randomImage})`;
     };
 
     return (
@@ -43,7 +67,23 @@ const Library = () => {
                 <div className="content-container">
                     <div className="slider-container">
                         <Carousel ref={carouselRef} beforeChange={handleBeforeChange}>
-                            <div>
+                            {
+                                news?.payload?.map((newsItem, index) => {
+                                    const randomIndex = Math.floor(Math.random() * images.length);
+                                    const randomImage = images[randomIndex];
+                                    return (
+                                        <div key={index}>
+                                            <div className="slide-content">
+                                                <img src={randomImage} alt={`image${index}`} />
+                                                <div className="dark-overlay"></div>
+                                                <p>{newsItem.newsName}</p>
+                                                <p className="slide-description">{newsItem.newsDetails}</p>
+                                            </div>
+                                        </div>
+                                    );
+                                })
+                            }
+                            {/* <div>
                                 <div className="slide-content">
                                     <img src={yellowStone} alt="image1" />
                                     <div className="dark-overlay"></div>
@@ -90,7 +130,7 @@ const Library = () => {
                                     <p>Soul Stone Text</p>
                                     <p className="slide-description">Description for Soul Stone</p>
                                 </div>
-                            </div>
+                            </div> */}
                         </Carousel>
                     </div>
                     <div className="controls">
