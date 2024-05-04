@@ -6,37 +6,31 @@ const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState({
-    uid: localStorage.getItem("uid"),
-    email: localStorage.getItem("email"),
-    name: localStorage.getItem("displayName"),
-    photoURL: localStorage.getItem("photoURL"),
+    username: localStorage.getItem("username"),
+    email: localStorage.getItem("username"),
+    signing: localStorage.getItem("signing"),
   });
 
-  const signing = () => {
-    // signInWithPopup(auth, provider).then((data) => {
-    //   console.log(data);
-    //   setUser({
-    //     uid: data.user.uid,
-    //     email: data.user.email,
-    //     name: data.user.displayName,
-    //     photoURL: data.user.photoURL,
-    //   });
-    //   localStorage.setItem("uid", data.user.uid);
-    //   localStorage.setItem("email", data.user.email);
-    //   localStorage.setItem("displayName", data.user.displayName);
-    //   localStorage.setItem("photoURL", data.user.photoURL);
-    // });
-  };
-  const logout = () => {
-    localStorage.removeItem("uid");
-    localStorage.removeItem("email");
-    localStorage.removeItem("displayName");
-    localStorage.removeItem("photoURL");
+  const signing = ({ username, email }) => {
+    console.log({ username });
+    localStorage.setItem("username", username);
+    localStorage.setItem("email", email);
+    localStorage.setItem("signing", true);
     setUser({
-      uid: "",
+      email: email,
+      signing: true,
+      username: username,
+    });
+  };
+
+  const logout = () => {
+    localStorage.setItem("username", "");
+    localStorage.setItem("email", "");
+    localStorage.setItem("signing", false);
+    setUser({
       email: "",
-      name: "",
-      photoURL: "",
+      signing: false,
+      username: "",
     });
     window.location.reload();
   };

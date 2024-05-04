@@ -3,6 +3,7 @@ import { GiSuperMushroom } from "react-icons/gi";
 import { RiQrCodeFill } from "react-icons/ri";
 import { Col, Row, notification, FloatButton } from "antd";
 import { useOverlay } from "../Context/OverlayContext";
+import { useUser } from "../Context/UserContext";
 import { url, useMutation, postData } from "../../utils";
 import { AnimatePresence, motion } from "framer-motion";
 import "../Styles/landingPage.css";
@@ -17,6 +18,7 @@ import QRCODE from "../Assets/QRCODE.jpg";
 const audio = new Audio(backgroundSound);
 const swordSound = new Audio(sword);
 const teleportSound = new Audio(teleport);
+import { TbLogout } from "react-icons/tb";
 
 swordSound.loop = false;
 teleportSound.loop = false;
@@ -29,6 +31,7 @@ const LandingPage = () => {
     window.innerWidth ||
     document.documentElement.clientWidth ||
     document.body.clientWidth;
+  const { user, signing, logout } = useUser();
 
   const [api, contextHolder] = notification.useNotification();
 
@@ -170,6 +173,15 @@ const LandingPage = () => {
             />
           }
         />
+        <FloatButton
+          icon={
+            <TbLogout
+              onClick={() => {
+                logout();
+              }}
+            />
+          }
+        />
       </FloatButton.Group>
       <Row style={{ width: "100%", height: "100vh" }}>
         <Col
@@ -187,6 +199,35 @@ const LandingPage = () => {
               padding: "20px",
             }}
           >
+            {user?.signing == true && (
+              <Col sm={24} lg={24}>
+                <motion.div
+                  initial={{ y: "300%" }}
+                  animate={{
+                    y: 0,
+                  }}
+                  exit={{ y: "-100%" }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 260,
+                    damping: 20,
+                    delay: 0.5,
+                  }}
+                >
+                  <p
+                    style={{
+                      fontSize: "1.0rem",
+                      fontFamily: "Orbitron",
+                      fontWeight: "bold",
+                      color: "white",
+                      // marginTop: "50px",
+                    }}
+                  >
+                    Hey {user?.username}! Welcome to the League of Heroes
+                  </p>
+                </motion.div>
+              </Col>
+            )}
             <Col sm={24} lg={24}>
               <motion.div
                 initial={{ y: "300%" }}
@@ -207,7 +248,7 @@ const LandingPage = () => {
                     fontFamily: "Orbitron",
                     fontWeight: "bold",
                     color: "white",
-                    marginTop: "50px",
+                    // marginTop: "50px",
                   }}
                 >
                   Unleash Your Inner Hero
@@ -234,7 +275,7 @@ const LandingPage = () => {
                     fontFamily: "Orbitron",
                     fontWeight: "bold",
                     color: "white",
-                    marginTop: "50px",
+                    marginTop: "30px",
                   }}
                 >
                   Discover Your Superpowers and Join the League of Heroes
@@ -290,24 +331,30 @@ const LandingPage = () => {
               >
                 <button
                   className="kave-btn"
-                  onClick={() =>
-                    swordSound.play() &&
-                    overlay({
-                      type: "form",
-                      title: modalDetail?.title,
-                      content: modalDetail?.content,
-                      form: NewForm,
-                      onOk: () => {
-                        console.log("Okay");
-                      },
-                      onCancel: () => {
-                        console.log("Cancel");
-                      },
-                    })
-                  }
+                  onClick={() => {
+                    if (user?.signing == true) {
+                      window.location.href = "/profile";
+                    } else {
+                      swordSound.play();
+                      overlay({
+                        type: "form",
+                        title: modalDetail?.title,
+                        content: modalDetail?.content,
+                        form: NewForm,
+                        onOk: () => {
+                          console.log("Okay");
+                        },
+                        onCancel: () => {
+                          console.log("Cancel");
+                        },
+                      });
+                    }
+                  }}
                 >
                   <span className="kave-line"></span>
-                  Start Your Journey
+                  {user?.signing == true
+                    ? "Go to Profile"
+                    : "Start Your Journey"}
                 </button>
               </motion.div>
             </Col>
@@ -348,6 +395,9 @@ const QRCode = () => {
 
 const NewForm = () => {
   const { overlay, setIsOpen } = useOverlay();
+
+  const { user, signing, logout } = useUser();
+  console.log(user);
   const onFinish = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -373,12 +423,13 @@ const NewForm = () => {
             okText: "Continue",
             onOk: () => {
               swordSound.play();
-              localStorage.setItem("username", data?.data?.user?.username);
-              localStorage.setItem("signing", true);
-              window.location.href = "/profile";
+              signing({
+                username: data?.data?.user,
+                email: data?.data?.email,
+              });
             },
             onCancel: () => {
-              localStorage.setItem("signing", false);
+              // logout();
             },
           });
       },
@@ -389,10 +440,10 @@ const NewForm = () => {
           content: "Login Attempt Failed. Please try again.",
 
           onOk: () => {
-            localStorage.setItem("signing", false);
+            // logout();
           },
           onCancel: () => {
-            localStorage.setItem("signing", false);
+            // logout();
           },
         });
       },
