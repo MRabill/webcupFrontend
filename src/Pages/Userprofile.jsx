@@ -11,7 +11,7 @@ import stat from "../assets/stats.png";
 import squad from "../assets/Squad.png";
 import squadGroup from "../assets/squadGroup.png"
 import squadBook from "../assets/squadBook.png"
-import backgroundSound from "../Assets/profile.mp3";
+import backgroundSound from "../Assets/hawken.mp3";
 
 const UserProfile = () => {
 
@@ -25,7 +25,12 @@ const UserProfile = () => {
       
       
       {/* Left card */}
-      <motion.div className="bg-151031 p-5 rounded-2xl sm:w-[480px] w-full mr-4 ">
+      <motion.div 
+           initial={{ x: "-100%" }} 
+           animate={{ x: 0 }} 
+           exit={{ x: "-100%" }}
+           transition={{ type: "spring", stiffness: 260, damping: 20,  delay:0.5 }}
+       className="bg-151031 p-5 rounded-2xl sm:w-[480px] w-full mr-4 ">
     <Tilt className="Tilt" options={{ max: 45, scale: 1.1 }}>
         
     <div style ={{background: "linear-gradient(90deg, rgba(37,26,79,1) 5%, rgba(85,60,181,1) 100%)" , opacity:"0.5"}} className="Tilt-inner bg-purple-900 shadow-md p-4 rounded-2xl">
@@ -55,13 +60,25 @@ const UserProfile = () => {
 
       {/* Avatar */}
 
-      
-      <div className="flex justify-center items-center h-screen ">
+      <motion.div initial={{ y: "100%" }}
+      animate={{
+        y: 0,
+      }}
+      exit={{ y: "-100%" }}
+      transition={{ type: "spring", stiffness: 260, damping: 20, delay:0.6 }}>
+        <div className="flex justify-center items-center h-screen ">
         <AvatarsCanvas />
       </div>
+      </motion.div>
+      
 
       {/* Right card */}
-      <motion.div className="bg-151031 p-5 rounded-2xl sm:w-[480px] w-full mr-4 ">
+      <motion.div 
+      initial={{ x: "100%" }}
+      animate={{ x: 0 }}
+      exit={{ x: "100%" }}
+      transition={{ type: "spring", stiffness: 260, damping: 20,  delay:0.5 }}
+      className="bg-151031 p-5 rounded-2xl sm:w-[480px] w-full mr-4 ">
         <Tilt className="Tilt" options={{ max: 45, scale: 1.1 }}>
           <div style ={{background: "linear-gradient(90deg, rgba(37,26,79,1) 5%, rgba(85,60,181,1) 100%)", opacity:"0.5"  }} className="Tilt-inner bg-purple-900 shadow-md p-4 rounded-2xl">
             {/* Content for right card */}
