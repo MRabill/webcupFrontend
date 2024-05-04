@@ -8,8 +8,17 @@ import book from "../assets/book.png";
 import file from "../assets/file.png";
 import bookStat from "../assets/BookStat.png";
 import stat from "../assets/stats.png";
+import squad from "../assets/Squad.png";
+import squadGroup from "../assets/squadGroup.png"
+import squadBook from "../assets/squadBook.png"
+import backgroundSound from "../Assets/profile.mp3";
 
 const UserProfile = () => {
+
+    const audio = new Audio(backgroundSound);
+    audio.loop = true;
+    audio.play();
+  
   return (
     
     <div className=" flex justify-between items-center ">
@@ -29,10 +38,11 @@ const UserProfile = () => {
             </p>
             <Tilt className="Tilt"   options={{ max: 25, scale: 1.1 } }>
             <img
-              src={bookStat}
-              alt="book"
-              className="w-full h-full object-cover rounded-2xl'"
-            />
+    src={squadBook}
+    alt="squad"
+    className="w-62 h-auto object-cover rounded-2xl'"
+/>
+
             </Tilt>
           </div>
           
