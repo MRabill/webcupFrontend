@@ -7,6 +7,9 @@ body, html {
     padding: 0;
     /* overflow: hidden; */
     overflow-x: hidden;
+    font-family: "Orbitron", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
   }
 
   /* total width */
