@@ -21,6 +21,7 @@ import {
   useMutation,
   postData,
 } from "../../utils";
+// import { AnimatePresence, motion } from "framer-motion";
 import AnimationEmptyPage from "../Assets/lotties/404.json";
 import { AnimatePresence, motion } from "framer-motion";
 import CustomButton from "../Components/CustomButton";
@@ -87,30 +88,48 @@ const LandingPage = () => {
             }}
           >
             <Col sm={24} lg={24}>
-              <p
-                style={{
-                  fontSize: "2.5rem",
-                  fontFamily: "Orbitron",
-                  fontWeight: "bold",
-                  color: "white",
-                  marginTop: "50px",
+              <motion.div
+                initial={{ y: "100%" }}
+                animate={{
+                  y: 0,
                 }}
+                exit={{ y: "-100%" }}
+                transition={{ type: "spring", stiffness: 260, damping: 20 }}
               >
-                Unleash Your Inner Hero
-              </p>
+                <p
+                  style={{
+                    fontSize: "2.5rem",
+                    fontFamily: "Orbitron",
+                    fontWeight: "bold",
+                    color: "white",
+                    marginTop: "50px",
+                  }}
+                >
+                  Unleash Your Inner Hero
+                </p>
+              </motion.div>
             </Col>
             <Col sm={24} lg={24}>
-              <p
-                style={{
-                  fontSize: "1.5rem",
-                  fontFamily: "Orbitron",
-                  fontWeight: "bold",
-                  color: "white",
-                  marginTop: "50px",
+              <motion.div
+                initial={{ y: "100%" }}
+                animate={{
+                  y: 0,
                 }}
+                exit={{ y: "-100%" }}
+                transition={{ type: "spring", stiffness: 260, damping: 20 }}
               >
-                Discover Your Superpowers and Join the League of Heroes
-              </p>
+                <p
+                  style={{
+                    fontSize: "1.5rem",
+                    fontFamily: "Orbitron",
+                    fontWeight: "bold",
+                    color: "white",
+                    marginTop: "50px",
+                  }}
+                >
+                  Discover Your Superpowers and Join the League of Heroes
+                </p>
+              </motion.div>
             </Col>
             <Col
               sm={24}
@@ -119,26 +138,35 @@ const LandingPage = () => {
                 marginTop: "50px",
               }}
             >
-              <button
-                className="kave-btn"
-                onClick={() =>
-                  overlay({
-                    type: "form",
-                    title: modalDetail?.title,
-                    content: modalDetail?.content,
-                    form: NewForm,
-                    onOk: () => {
-                      console.log("Okay");
-                    },
-                    onCancel: () => {
-                      console.log("Cancel");
-                    },
-                  })
-                }
+              <motion.div
+                initial={{ y: "100%" }}
+                animate={{
+                  y: 0,
+                }}
+                exit={{ y: "-100%" }}
+                transition={{ type: "spring", stiffness: 260, damping: 20 }}
               >
-                <span className="kave-line"></span>
-                Start Your Journey
-              </button>
+                <button
+                  className="kave-btn"
+                  onClick={() =>
+                    overlay({
+                      type: "form",
+                      title: modalDetail?.title,
+                      content: modalDetail?.content,
+                      form: NewForm,
+                      onOk: () => {
+                        console.log("Okay");
+                      },
+                      onCancel: () => {
+                        console.log("Cancel");
+                      },
+                    })
+                  }
+                >
+                  <span className="kave-line"></span>
+                  Start Your Journey
+                </button>
+              </motion.div>
             </Col>
           </Row>
         </Col>
