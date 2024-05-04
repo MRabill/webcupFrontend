@@ -27,6 +27,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import CustomButton from "../Components/CustomButton";
 import "../Styles/landingPage.css";
 import background from "../Assets/landingPage.jpg";
+import StarsCanvas from "../Components/canvas/Stars";
 
 const LandingPage = () => {
   const screenWidth =
@@ -61,17 +62,25 @@ const LandingPage = () => {
 
   return (
     <>
-      <img
+     
+     <img
         src={background}
         style={{
           position: "absolute",
           // objectFit: "cover",
           height: "100vh",
           width: "100%",
+          zIndex: "-1000"
         }}
       />
+     
+      <div className=" relativve z-1000">
+        {/* <AvatarsCanvas /> */}
+        <StarsCanvas/>
+      </div>
 
-      <Row style={{ width: "100%", height: "100vh" }}>
+      <Row style={{ width: "100%", height: "100vh" }}  >
+       
         <Col
           sm={24}
           lg={12}
