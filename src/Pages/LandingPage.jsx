@@ -1,36 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { GiSuperMushroom } from "react-icons/gi";
 import { RiQrCodeFill } from "react-icons/ri";
-import { IoIosInformationCircleOutline } from "react-icons/io";
-import {
-  Layout,
-  Typography,
-  Col,
-  Row,
-  Form,
-  Input,
-  Button,
-  Checkbox,
-  notification,
-  FloatButton,
-} from "antd";
+import { Col, Row, notification, FloatButton } from "antd";
 import { useOverlay } from "../Context/OverlayContext";
-import { CommentOutlined, CustomerServiceOutlined } from "@ant-design/icons";
-import {
-  Navigate,
-  useNavigate,
-  useQuery,
-  fetchData,
-  url,
-  Lottie,
-  useMutation,
-  postData,
-} from "../../utils";
-// import { AnimatePresence, motion } from "framer-motion";
-import AnimationEmptyPage from "../Assets/lotties/404.json";
+import { url, useMutation, postData } from "../../utils";
 import { AnimatePresence, motion } from "framer-motion";
-import CustomButton from "../Components/CustomButton";
 import "../Styles/landingPage.css";
 import background from "../Assets/landingPage.jpg";
 import StarsCanvas from "../Components/canvas/Stars";
@@ -108,13 +82,6 @@ const LandingPage = () => {
     // Add more mission objects as needed
   ];
 
-  // const openNotificationWithIcon = (type) => {
-  //   api[type]({
-  //     message: "Rescue Operation",
-  //     description: "A building is on fire! Rescue civilians trapped inside.",
-  //   });
-  // };
-  // const [isLoginForm, setIsLoginForm] = useState(true);
   //useffect to trigger notification after a random interval
   useEffect(() => {
     const randomInterval = Math.floor(Math.random() * (10000 - 30000)) + 30000;
@@ -160,30 +127,13 @@ const LandingPage = () => {
     content: "Please fill in the form below",
   });
 
-  const setToLogin = () => {
-    if (modalDetail.type === "LOGIN") {
-      setDetails({
-        type: "REGISTER",
-        title: "Register",
-        content: "Please fill in the form below",
-      });
-    } else {
-      setDetails({
-        title: "Login",
-        content: "Please fill in the form below",
-      });
-    }
-  };
-
   return (
     <>
       {contextHolder}
       <img
         src={background}
-        // className="blur-sm"
         style={{
           position: "absolute",
-          // objectFit: "cover",
           height: "100vh",
           width: "100%",
           zIndex: "-1000",
@@ -191,20 +141,15 @@ const LandingPage = () => {
       />
 
       <div className=" relativve z-1000">
-        {/* <AvatarsCanvas /> */}
         <StarsCanvas />
       </div>
       <FloatButton.Group
         trigger="click"
-        // type="primary"
         style={{
           right: 24,
-          // color: "red",
         }}
         icon={<GiSuperMushroom />}
       >
-        {/* <FloatButton /> */}
-        {/* <FloatButton icon={<IoIosInformationCircleOutline />} /> */}
         <FloatButton
           icon={
             <RiQrCodeFill
@@ -226,17 +171,6 @@ const LandingPage = () => {
           }
         />
       </FloatButton.Group>
-      {/* <FloatButton.Group
-        trigger="hover"
-        type="primary"
-        style={{
-          right: 94,
-        }}
-        icon={<CustomerServiceOutlined />}
-      >
-        <FloatButton />
-        <FloatButton icon={<CommentOutlined />} />
-      </FloatButton.Group> */}
       <Row style={{ width: "100%", height: "100vh" }}>
         <Col
           sm={24}
@@ -325,7 +259,6 @@ const LandingPage = () => {
                   style={{
                     fontSize: "0.8rem",
                     fontFamily: "Orbitron",
-                    // fontWeight: "bold",
                     color: "white",
                     marginTop: "20px",
                   }}
@@ -380,7 +313,7 @@ const LandingPage = () => {
             </Col>
           </Row>
         </Col>
-        <Col sm={24} lg={12}>
+        <Col sm={0} lg={12}>
           <LogosCanvas />
         </Col>
       </Row>
@@ -397,7 +330,6 @@ const QRCode = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        // flexDirection: "column",
         height: "100%",
         width: "100%",
       }}
@@ -443,29 +375,23 @@ const NewForm = () => {
               swordSound.play();
               localStorage.setItem("username", data?.data?.user?.username);
               localStorage.setItem("signing", true);
-              // navigate("/profile");
               window.location.href = "/profile";
-              console.log({ DATE: data });
             },
             onCancel: () => {
-              console.log("Cancel");
               localStorage.setItem("signing", false);
             },
           });
       },
       onError: (data) => {
-        console.log("sfgsdnfisbfiusdf");
         overlay({
           type: "warning",
           title: "Failed",
           content: "Login Attempt Failed. Please try again.",
 
           onOk: () => {
-            console.log("Okay");
             localStorage.setItem("signing", false);
           },
           onCancel: () => {
-            console.log("Cancel");
             localStorage.setItem("signing", false);
           },
         });
@@ -488,7 +414,7 @@ const NewForm = () => {
                   color: "white",
                 }}
               >
-                Email address
+                HeroicIdentity-mail
               </label>
               <div className="mt-2">
                 <input
@@ -515,7 +441,7 @@ const NewForm = () => {
                     color: "white",
                   }}
                 >
-                  Password
+                  Secret Code
                 </label>
               </div>
               <div className="mt-2">
@@ -542,17 +468,13 @@ const NewForm = () => {
           </form>
 
           <p className="mt-10 text-center text-sm text-gray-500">
-            Not a Hero?
+            Not a qualified Hero yet?
             <a
               href="/register"
               className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
               style={{
                 paddingLeft: "5px",
               }}
-              // onClick={() => {
-              //   console.log("Register");
-              //   window.location.href = "/register";
-              // }}
             >
               Register
             </a>

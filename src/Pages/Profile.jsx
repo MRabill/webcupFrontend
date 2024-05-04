@@ -8,20 +8,21 @@ import UserProfile from "./userprofile";
 
 const Profile = () => {
   return (
-    <div >
-      <div style={{width:"100vw", height: '100vh', background: "#131225", position: "absolute", zIndex:'-1000'}}>
-
-      </div>
-       <div >
-        
-        
-      </div>
-      <div className="relativve z-0" >
-      <UserProfile />
+    <div>
+      <div
+        style={{
+          width: "100vw",
+          height: "100vh",
+          background: "#131225",
+          position: "absolute",
+          zIndex: "-1000",
+        }}
+      ></div>
+      <div></div>
+      <div className="relativve z-0">
+        <UserProfile />
         <StarsCanvas />
       </div>
-     
-     
     </div>
   );
 };
