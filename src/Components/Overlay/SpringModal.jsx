@@ -35,9 +35,9 @@ const SpringModal = ({ isOpen, setIsOpen, detail }) => {
             onClick={(e) => e.stopPropagation()}
             className={` ${
               detail?.type === "success"
-                ? "bg-gradient-to-br from-violet-600 to-indigo-600 text-white"
+                ? "bg-[url('../Assets/landingPge.jpg')] text-white"
                 : detail?.type === "warning"
-                ? "bg-[white] text-[#FAAD14]"
+                ? "bg-[url('../Assets/landingPge.jpg')] text-[#FAAD14]"
                 : "bg-[white] text-[#FF4D4F]"
             } p-6 rounded-xl w-full max-w-lg shadow-2xl cursor-default relative overflow-hidden`}
           >
@@ -67,7 +67,7 @@ const SpringModal = ({ isOpen, setIsOpen, detail }) => {
               </h3>
               <p
                 className={` ${
-                  detail?.type === "success" ? "text-[white]" : "text-[black]"
+                  detail?.type === "success" ? "text-[white]" : "text-[white]"
                 } text-center mb-6`}
               >
                 {detail.content}

@@ -31,12 +31,17 @@ import "../Styles/landingPage.css";
 import background from "../Assets/landingPage.jpg";
 import StarsCanvas from "../Components/canvas/Stars";
 import LogosCanvas from "../Components/canvas/logo";
-
+//import notificationSound from "../../assets/notificationSound.mp3";
+import backgroundSound from "../Assets/hawken.mp3";
 const LandingPage = () => {
   const screenWidth =
     window.innerWidth ||
     document.documentElement.clientWidth ||
     document.body.clientWidth;
+
+  const audio = new Audio(backgroundSound);
+  audio.loop = true;
+  audio.play();
 
   const [api, contextHolder] = notification.useNotification();
   const openNotificationWithIcon = (type) => {
@@ -114,6 +119,7 @@ const LandingPage = () => {
       {contextHolder}
       <img
         src={background}
+        // className="blur-sm"
         style={{
           position: "absolute",
           // objectFit: "cover",
@@ -227,14 +233,10 @@ const LandingPage = () => {
             </Col>
           </Row>
         </Col>
-        <div class="mx-auto max-w-4xl">
-         <LogosCanvas/>
-          </div>
-
-
-
+        <Col sm={24} lg={12}>
+          <LogosCanvas />
+        </Col>
       </Row>
-      
     </>
   );
 };
