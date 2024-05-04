@@ -72,11 +72,11 @@ const Library = () => {
                                     const randomIndex = Math.floor(Math.random() * images.length);
                                     const randomImage = images[randomIndex];
                                     return (
-                                        <div key={index}>
+                                        <div key={index} className="slide">
                                             <div className="slide-content">
+                                                <h2 className="slide-title">{newsItem.newsName}</h2>
                                                 <img src={randomImage} alt={`image${index}`} />
                                                 <div className="dark-overlay"></div>
-                                                <p>{newsItem.newsName}</p>
                                                 <p className="slide-description">{newsItem.newsDetails}</p>
                                             </div>
                                         </div>
