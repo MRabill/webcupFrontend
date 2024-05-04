@@ -8,11 +8,13 @@ import { RxDashboard } from "react-icons/rx";
 
 import "./styles/main.css";
 import Training from "./Pages/Training";
+import Profile from "./Pages/Profile";
 
 const queryClient = new QueryClient();
 
 const Dashboard = lazy(() => import("./Pages/Dashboard"));
 const Setting = lazy(() => import("./Pages/Setting"));
+const LandingPage = lazy(() => import("./Pages/LandingPage"));
 
 const Loading = () => {
   return (
@@ -51,7 +53,7 @@ const Loading = () => {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Dashboard />,
+    element: <LandingPage />,
   },
   {
     path: "/setting",
@@ -60,6 +62,10 @@ const router = createBrowserRouter([
   {
     path: "/training",
     element: <Training />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
   },
 ]);
 

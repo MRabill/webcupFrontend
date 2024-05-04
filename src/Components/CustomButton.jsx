@@ -45,13 +45,14 @@ const CustomButton = ({
       onClick={onClick}
       style={{
         background: type == "default" ? Color.WHITE : Color.BLUE03,
-        borderRadius: "4px",
+        borderRadius: "7px",
         border: `1px solid ${borderColor}`,
         boxShadow:
           type == "primary" && isGradient
             ? "0px 8px 25px rgba(2, 33, 169, 0.3)"
             : "none",
         ...style,
+        height: "40px",
       }}
       disabled={loading}
     >
