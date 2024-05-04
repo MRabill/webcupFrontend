@@ -3,6 +3,7 @@ const url = {
   BASIC: `${baseUrl}/`,
   GET_DEVELOPERS: `${baseUrl}/APIBACKEND/get-user`,
   POST_USER: `${baseUrl}/APIBACKEND/post-user`,
+  AUTHENTICATE_USER: `${baseUrl}/APIBACKEND/authenticate-user`,
 };
 
 export default url;

@@ -9,8 +9,10 @@ import {
   Input,
   Button,
   Checkbox,
+  notification,
 } from "antd";
 import { useOverlay } from "../Context/OverlayContext";
+// import { useUser } from "../Context/UserContext";
 import {
   Navigate,
   useNavigate,
@@ -35,7 +37,53 @@ const LandingPage = () => {
     document.documentElement.clientWidth ||
     document.body.clientWidth;
 
-  console.log(screenWidth);
+  const [api, contextHolder] = notification.useNotification();
+  const openNotificationWithIcon = (type) => {
+    api[type]({
+      message: "Rescue Operation",
+      description: "A building is on fire! Rescue civilians trapped inside.",
+    });
+  };
+  //useffect to trigger notification after a random interval
+  useEffect(() => {
+    const randomInterval = Math.floor(Math.random() * (10000 - 30000)) + 30000;
+    const timer = setTimeout(() => {
+      const randomMission =
+        missions[Math.floor(Math.random() * missions.length)];
+      openNotificationWithIcon(
+        "info",
+        randomMission.title,
+        randomMission.details
+      );
+    }, randomInterval);
+    return () => clearTimeout(timer);
+  });
+
+  // const openNotificationWithIcon = (type, title, details) => {
+  //   // Your notification logic here
+  //   console.log(`Notification: ${title} - ${details}`);
+  // };
+
+  // const MissionAlert = () => {
+  //   useEffect(() => {
+  //     const openRandomMissionNotification = () => {
+  //       const randomMission =
+  //         missions[Math.floor(Math.random() * missions.length)];
+  //       openNotificationWithIcon(
+  //         "info",
+  //         randomMission.title,
+  //         randomMission.details
+  //       );
+  //     };
+
+  //     const randomInterval = Math.floor(Math.random() * (4000 - 3000)) + 3000;
+  //     const timer = setTimeout(openRandomMissionNotification, randomInterval);
+
+  //     return () => clearTimeout(timer);
+  //   }, []);
+
+  //   return null; // or any JSX if needed
+  // };
 
   const isMobile = screenWidth < 768;
   const { overlay, setIsOpen } = useOverlay();
@@ -62,25 +110,24 @@ const LandingPage = () => {
 
   return (
     <>
-     
-     <img
+      {contextHolder}
+      <img
         src={background}
         style={{
           position: "absolute",
           // objectFit: "cover",
           height: "100vh",
           width: "100%",
-          zIndex: "-1000"
+          zIndex: "-1000",
         }}
       />
-     
+
       <div className=" relativve z-1000">
         {/* <AvatarsCanvas /> */}
-        <StarsCanvas/>
+        <StarsCanvas />
       </div>
 
-      <Row style={{ width: "100%", height: "100vh" }}  >
-       
+      <Row style={{ width: "100%", height: "100vh" }}>
         <Col
           sm={24}
           lg={12}
@@ -199,7 +246,7 @@ const NewForm = () => {
   const loginUser = useMutation(
     async (values) =>
       await postData({
-        url: url?.POST_USER,
+        url: url?.AUTHENTICATE_USER,
         body: {
           ...values,
         },
@@ -333,12 +380,15 @@ const NewForm = () => {
           </form>
 
           <p className="mt-10 text-center text-sm text-gray-500">
-            Not a member?
+            Not a Hero?
             <a
               href="#"
               className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+              style={{
+                paddingLeft: "5px",
+              }}
             >
-              Start a 14 day free trial
+              Register
             </a>
           </p>
         </div>
