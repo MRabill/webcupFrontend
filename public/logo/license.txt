@@ -1,0 +1,11 @@
+Model Information:
+* title:	MH World: Iceborne Logo
+* source:	https://sketchfab.com/3d-models/mh-world-iceborne-logo-f31713e7302e401f807f2db155e0f062
+* author:	DiabolicMaggot (https://sketchfab.com/DiabolicMaggot)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "MH World: Iceborne Logo" (https://sketchfab.com/3d-models/mh-world-iceborne-logo-f31713e7302e401f807f2db155e0f062) by DiabolicMaggot (https://sketchfab.com/DiabolicMaggot) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
