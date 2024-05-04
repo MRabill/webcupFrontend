@@ -30,6 +30,7 @@ import CustomButton from "../Components/CustomButton";
 import "../Styles/landingPage.css";
 import background from "../Assets/landingPage.jpg";
 import StarsCanvas from "../Components/canvas/Stars";
+import LogosCanvas from "../Components/canvas/logo";
 
 const LandingPage = () => {
   const screenWidth =
@@ -226,7 +227,14 @@ const LandingPage = () => {
             </Col>
           </Row>
         </Col>
+        <div class="mx-auto max-w-4xl">
+         <LogosCanvas/>
+          </div>
+
+
+
       </Row>
+      
     </>
   );
 };
