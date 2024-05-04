@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Carousel, Button } from 'antd';
 import '../Styles/Library.css';
 import yellowStone from "../Assets/stones/lightyellow.jpg";
@@ -40,6 +40,16 @@ const Library = () => {
         }
     );
 
+    const [assignedImages, setAssignedImages] = useState([]);
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    useEffect(() => {
+        if (news?.payload) {
+            const assigned = news.payload.map((_, index) => images[index % images.length]);
+            setAssignedImages(assigned);
+        }
+    }, [news]);
+
     const carouselRef = useRef(null);
 
     const prevSlide = () => {
@@ -52,13 +62,14 @@ const Library = () => {
 
     const handleBeforeChange = (from, to) => {
         const background = document.querySelector(".background");
-        const randomImage = images[to];
+        const randomImage = images[to % images.length]; // Ensure to wrap around the index
         background.style.backgroundImage = `url(${randomImage})`;
+        setCurrentSlide(to);
     };
 
     return (
         <>
-            <div className=" relativve z-10">
+            <div className="relative z-10">
                 <StarsCanvas />
             </div>
             <div className="library-container">
@@ -66,22 +77,16 @@ const Library = () => {
                 <div className="content-container">
                     <div className="slider-container">
                         <Carousel ref={carouselRef} beforeChange={handleBeforeChange}>
-                            {
-                                news?.payload?.map((newsItem, index) => {
-                                    const randomIndex = Math.floor(Math.random() * images.length);
-                                    const randomImage = images[randomIndex];
-                                    return (
-                                        <div key={index} className="slide">
-                                            <div className="slide-content">
-                                                <p className="slide-title">{newsItem.newsName}</p>
-                                                <img src={randomImage} alt={`image${index}`} />
-                                                <div className="dark-overlay"></div>
-                                                <p className="slide-description">{newsItem.newsDetails}</p>
-                                            </div>
-                                        </div>
-                                    );
-                                })
-                            }
+                            {news?.payload?.map((newsItem, index) => (
+                                <div key={index} className="slide">
+                                    <div className="slide-content">
+                                        <p className="slide-title">{newsItem.newsName} {assignedImages[index]}</p>
+                                        <img src={assignedImages[index]} alt={`image${index}`} />
+                                        <div className="dark-overlay"></div>
+                                        <p className="slide-description">{newsItem.newsDetails}</p>
+                                    </div>
+                                </div>
+                            ))}
                         </Carousel>
                     </div>
                     <div className="controls">
