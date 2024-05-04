@@ -1,0 +1,20 @@
+.training-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.left-section {
+  position: relative;
+}
+
+
+.avatar-selection-card {
+  cursor: pointer;
+  border: 2px solid; 
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  transition: border-color 0.3s ease;
+}

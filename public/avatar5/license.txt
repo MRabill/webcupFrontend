@@ -1,0 +1,11 @@
+Model Information:
+* title:	White Widow
+* source:	https://sketchfab.com/3d-models/white-widow-28a9aeb7f5a94af1bb1c99bf57693b65
+* author:	RegnadBIT (https://sketchfab.com/RegnadBIT)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "White Widow" (https://sketchfab.com/3d-models/white-widow-28a9aeb7f5a94af1bb1c99bf57693b65) by RegnadBIT (https://sketchfab.com/RegnadBIT) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
