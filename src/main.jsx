@@ -104,8 +104,13 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                         height: "50px",
                       }}
                     />
-                    <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-                      Flowbite
+                    <span
+                      className="self-center text-xl font-semibold whitespace-nowrap text-white"
+                      style={{
+                        fontSize: "0.8rem",
+                      }}
+                    >
+                      Vigilant Ventures Institute VVI
                     </span>
                   </a>
                   <div className="flex items-center lg:order-2">

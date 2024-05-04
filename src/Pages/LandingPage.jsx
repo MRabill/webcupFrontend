@@ -255,12 +255,17 @@ const LandingPage = () => {
           >
             <Col sm={24} lg={24}>
               <motion.div
-                initial={{ y: "100%" }}
+                initial={{ y: "300%" }}
                 animate={{
                   y: 0,
                 }}
                 exit={{ y: "-100%" }}
-                transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 260,
+                  damping: 20,
+                  delay: 0.5,
+                }}
               >
                 <p
                   style={{
@@ -277,12 +282,17 @@ const LandingPage = () => {
             </Col>
             <Col sm={24} lg={24}>
               <motion.div
-                initial={{ y: "100%" }}
+                initial={{ y: "300%" }}
                 animate={{
                   y: 0,
                 }}
                 exit={{ y: "-100%" }}
-                transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 260,
+                  damping: 20,
+                  delay: 0.5,
+                }}
               >
                 <p
                   style={{
@@ -299,12 +309,17 @@ const LandingPage = () => {
             </Col>
             <Col sm={24} lg={24}>
               <motion.div
-                initial={{ y: "100%" }}
+                initial={{ y: "300%" }}
                 animate={{
                   y: 0,
                 }}
                 exit={{ y: "-100%" }}
-                transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 260,
+                  damping: 20,
+                  delay: 0.5,
+                }}
               >
                 <p
                   style={{
@@ -328,12 +343,17 @@ const LandingPage = () => {
               }}
             >
               <motion.div
-                initial={{ y: "100%" }}
+                initial={{ y: "200%" }}
                 animate={{
                   y: 0,
                 }}
                 exit={{ y: "-100%" }}
-                transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 260,
+                  damping: 20,
+                  delay: 0.7,
+                }}
               >
                 <button
                   className="kave-btn"
