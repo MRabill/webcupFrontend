@@ -17,14 +17,19 @@ const FormModal = ({ isOpen, setIsOpen, detail, Form }) => {
             animate={{ scale: 1, rotate: "0deg" }}
             exit={{ scale: 0, rotate: "0deg" }}
             onClick={(e) => e.stopPropagation()}
-            className="bg-[white] text-black p-6 rounded-xl w-full max-w-2xl shadow-xl cursor-default relative overflow-hidden"
+            className="bg-[url('../Assets/landingPge.jpg')] text-black p-6 rounded-xl w-full max-w-2xl shadow-2xl cursor-default relative overflow-hidden"
           >
-            <SiReaddotcv className="text-[#EEEDFE] rotate-12 text-[200px] absolute z-0 -top-6 -left-16" />
+            {/* <SiReaddotcv className="text-[#EEEDFE] rotate-12 text-[200px] absolute z-0 -top-6 -left-16" /> */}
             <div className="relative z-10">
-              <h3 className="text-3xl font-bold text-center mb-2">
+              <h3
+                style={{ color: "white" }}
+                className="text-3xl font-bold text-center mb-2"
+              >
                 {detail.title}
               </h3>
-              <p className="text-center mb-6">{detail.content}</p>
+              <p className="text-center mb-6" style={{ color: "white" }}>
+                {detail.content}
+              </p>
               <Form />
               {/* <div className="flex gap-4 justify-end">
                 <CButton text={"Cancel"} action={detail.onCancel} />

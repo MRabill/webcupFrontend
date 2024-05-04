@@ -18,6 +18,8 @@ import {
   fetchData,
   url,
   Lottie,
+  useMutation,
+  postData,
 } from "../../utils";
 import AnimationEmptyPage from "../Assets/lotties/404.json";
 import { AnimatePresence, motion } from "framer-motion";
@@ -62,8 +64,9 @@ const LandingPage = () => {
         src={background}
         style={{
           position: "absolute",
-          objectFit: "cover",
+          // objectFit: "cover",
           height: "100vh",
+          width: "100%",
         }}
       />
 
@@ -117,7 +120,7 @@ const LandingPage = () => {
               }}
             >
               <button
-                class="kave-btn"
+                className="kave-btn"
                 onClick={() =>
                   overlay({
                     type: "form",
@@ -133,7 +136,7 @@ const LandingPage = () => {
                   })
                 }
               >
-                <span class="kave-line"></span>
+                <span className="kave-line"></span>
                 Start Your Journey
               </button>
             </Col>
@@ -148,20 +151,169 @@ export default LandingPage;
 
 const NewForm = () => {
   const [form] = Form.useForm();
-
-  const onFinish = (values) => {
-    console.log("Success:", values);
+  const { overlay, setIsOpen } = useOverlay();
+  const onFinish = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData.entries());
+    loginUser.mutate(data);
   };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
+  const loginUser = useMutation(
+    async (values) =>
+      await postData({
+        url: url?.POST_USER,
+        body: {
+          ...values,
+        },
+      }),
+    {
+      onSuccess: (data) => {
+        overlay({
+          type: "success",
+          title: "Success",
+          content: "Login Successful. Welcome to the League of Heroes!",
+          okText: "Continue",
+          onOk: () => {
+            localStorage.setItem("username", data?.data?.user?.username);
+            localStorage.setItem("signing", true);
+            // navigate("/profile");
+            window.location.href = "/profile";
+            console.log({ DATE: data });
+          },
+          onCancel: () => {
+            console.log("Cancel");
+            localStorage.setItem("signing", false);
+          },
+        });
+      },
+      onError: (data) => {
+        console.log("sfgsdnfisbfiusdf");
+        overlay({
+          type: "warning",
+          title: "Failed",
+          content: "Login Attempt Failed. Please try again.",
+
+          onOk: () => {
+            console.log("Okay");
+            localStorage.setItem("signing", false);
+          },
+          onCancel: () => {
+            console.log("Cancel");
+            localStorage.setItem("signing", false);
+          },
+        });
+      },
+    }
+  );
 
   return (
     <div>
-      <Form
+      <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+          {/* <img
+            className="mx-auto h-10 w-auto"
+            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+            alt="Your Company"
+          />
+          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+            Sign in to your account
+          </h2> */}
+        </div>
+
+        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+          <form className="space-y-6" onSubmit={onFinish}>
+            <div>
+              <label
+                for="email"
+                className="block text-sm font-medium leading-6 text-gray-900"
+                style={{
+                  color: "white",
+                }}
+              >
+                Email address
+              </label>
+              <div className="mt-2">
+                <input
+                  id="email"
+                  name="username"
+                  type="email"
+                  autocomplete="email"
+                  required
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  style={{
+                    fontFamily: "Poppins",
+                    paddingLeft: "10px",
+                  }}
+                />
+              </div>
+            </div>
+
+            <div>
+              <div className="flex items-center justify-between">
+                <label
+                  for="password"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                  style={{
+                    color: "white",
+                  }}
+                >
+                  Password
+                </label>
+                {/* <div className="text-sm">
+                  <a
+                    href="#"
+                    className="font-semibold text-indigo-600 hover:text-indigo-500"
+                  >
+                    Forgot password?
+                  </a>
+                </div> */}
+              </div>
+              <div className="mt-2">
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autocomplete="current-password"
+                  required
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  style={{
+                    fontFamily: "Poppins",
+                    paddingLeft: "10px",
+                  }}
+                />
+              </div>
+            </div>
+
+            <div>
+              <button
+                // type="submit"
+                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                Sign in
+              </button>
+            </div>
+          </form>
+
+          <p className="mt-10 text-center text-sm text-gray-500">
+            Not a member?
+            <a
+              href="#"
+              className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+            >
+              Start a 14 day free trial
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+{
+  /* <Form
         name="normal_login"
-        className="login-form"
+        classNameName="login-form"
         initialValues={{
           remember: true,
         }}
@@ -177,7 +329,7 @@ const NewForm = () => {
           ]}
         >
           <Input
-            prefix={<UserOutlined className="site-form-item-icon" />}
+            prefix={<UserOutlined classNameName="site-form-item-icon" />}
             placeholder="Username"
           />
         </Form.Item>
@@ -191,7 +343,7 @@ const NewForm = () => {
           ]}
         >
           <Input
-            prefix={<LockOutlined className="site-form-item-icon" />}
+            prefix={<LockOutlined classNameName="site-form-item-icon" />}
             type="password"
             placeholder="Password"
           />
@@ -201,19 +353,17 @@ const NewForm = () => {
             <Checkbox>Remember me</Checkbox>
           </Form.Item>
 
-          <a className="login-form-forgot" href="">
+          <a classNameName="login-form-forgot" href="">
             Forgot password
           </a>
         </Form.Item>
 
         <Form.Item>
-          <button class="kave-btn" onClick={() => form.submit()}>
-            <span class="kave-line"></span>
+          <button className="kave-btn" onClick={() => form.submit()}>
+            <span className="kave-line"></span>
             Login
           </button>
           Or <a href="">register now!</a>
         </Form.Item>
-      </Form>
-    </div>
-  );
-};
+      </Form> */
+}

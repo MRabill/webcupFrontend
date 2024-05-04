@@ -39,7 +39,7 @@ const SpringModal = ({ isOpen, setIsOpen, detail }) => {
                 : detail?.type === "warning"
                 ? "bg-[white] text-[#FAAD14]"
                 : "bg-[white] text-[#FF4D4F]"
-            } p-6 rounded-xl w-full max-w-lg shadow-xl cursor-default relative overflow-hidden`}
+            } p-6 rounded-xl w-full max-w-lg shadow-2xl cursor-default relative overflow-hidden`}
           >
             {detail?.type === "success" ? (
               <FaRegCircleCheck className="text-white/10 rotate-12 text-[250px] absolute z-0 -top-24 -left-24" />
@@ -59,7 +59,10 @@ const SpringModal = ({ isOpen, setIsOpen, detail }) => {
                   <FiAlertCircle className="text-[#FF4D4F]" />
                 )}
               </div>
-              <h3 className="text-3xl font-bold text-center mb-2">
+              <h3
+                className="text-3xl font-bold text-center mb-2"
+                // style={{ color: "white" }}
+              >
                 {detail.title}
               </h3>
               <p
