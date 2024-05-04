@@ -51,9 +51,9 @@
     background-color: rgba(0, 0, 0, 0.7); /* Adjust transparency as needed */
 }
 
-.slide-content p {
+.slide-title {
     position: absolute;
-    top: 50%;
+    top: 10%; /* Adjust the distance from the top as needed */
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
@@ -63,7 +63,7 @@
 
 .slide-description {
     position: absolute;
-    bottom: 10px; /* Adjust the distance from the bottom as needed */
+    top: 30%; /* Adjust the distance from the top as needed */
     left: 50%;
     transform: translateX(-50%);
     color: white;

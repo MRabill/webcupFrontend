@@ -18,6 +18,7 @@ import {
     useMutation,
     postData,
 } from "../../utils";
+
 const Library = () => {
     const images = [
         yellowStone,
@@ -27,10 +28,10 @@ const Library = () => {
         redStone,
         soulStone
     ];
+
     const { isLoading: newsLoading, data: news = [] } = useQuery(
         ["news"],
         () => fetchData({ url: url?.GET_NEWS }),
-
         { refetchOnWindowFocus: false },
         {
             onError: (e) => {
@@ -38,7 +39,6 @@ const Library = () => {
             },
         }
     );
-
 
     const carouselRef = useRef(null);
 
@@ -53,7 +53,6 @@ const Library = () => {
     const handleBeforeChange = (from, to) => {
         const background = document.querySelector(".background");
         const randomImage = images[to];
-
         background.style.backgroundImage = `url(${randomImage})`;
     };
 
@@ -72,65 +71,17 @@ const Library = () => {
                                     const randomIndex = Math.floor(Math.random() * images.length);
                                     const randomImage = images[randomIndex];
                                     return (
-                                        <div key={index}>
+                                        <div key={index} className="slide">
                                             <div className="slide-content">
+                                                <p className="slide-title">{newsItem.newsName}</p>
                                                 <img src={randomImage} alt={`image${index}`} />
                                                 <div className="dark-overlay"></div>
-                                                <p>{newsItem.newsName}</p>
                                                 <p className="slide-description">{newsItem.newsDetails}</p>
                                             </div>
                                         </div>
                                     );
                                 })
                             }
-                            {/* <div>
-                                <div className="slide-content">
-                                    <img src={yellowStone} alt="image1" />
-                                    <div className="dark-overlay"></div>
-                                    <p>Yellow Stone Text</p>
-                                    <p className="slide-description">Description for Yellow Stone</p>
-                                </div>
-                            </div>
-                            <div>
-                                <div className="slide-content">
-                                    <img src={greenStone} alt="image2" />
-                                    <div className="dark-overlay"></div>
-                                    <p>Green Stone Text</p>
-                                    <p className="slide-description">Description for Green Stone</p>
-                                </div>
-                            </div>
-                            <div>
-                                <div className="slide-content">
-                                    <img src={blueStone} alt="image3" />
-                                    <div className="dark-overlay"></div>
-                                    <p>Blue Stone Text</p>
-                                    <p className="slide-description">Description for Blue Stone</p>
-                                </div>
-                            </div>
-                            <div>
-                                <div className="slide-content">
-                                    <img src={purpleStone} alt="image4" />
-                                    <div className="dark-overlay"></div>
-                                    <p>Purple Stone Text</p>
-                                    <p className="slide-description">Description for Purple Stone</p>
-                                </div>
-                            </div>
-                            <div>
-                                <div className="slide-content">
-                                    <img src={redStone} alt="image5" />
-                                    <div className="dark-overlay"></div>
-                                    <p>Red Stone Text</p>
-                                    <p className="slide-description">Description for Red Stone</p>
-                                </div>
-                            </div>
-                            <div>
-                                <div className="slide-content">
-                                    <img src={soulStone} alt="image6" />
-                                    <div className="dark-overlay"></div>
-                                    <p>Soul Stone Text</p>
-                                    <p className="slide-description">Description for Soul Stone</p>
-                                </div>
-                            </div> */}
                         </Carousel>
                     </div>
                     <div className="controls">
