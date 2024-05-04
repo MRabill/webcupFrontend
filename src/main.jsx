@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { RxDashboard } from "react-icons/rx";
 
 import "./styles/main.css";
+import Training from "./Pages/Training";
 
 const queryClient = new QueryClient();
 
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
   {
     path: "/setting",
     element: <Setting />,
+  },
+  {
+    path: "/training",
+    element: <Training />,
   },
 ]);
 

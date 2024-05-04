@@ -78,6 +78,7 @@ const Dashboard = () => {
       </Content>
 
       <button onClick={() => navigate("/setting")}>Setting</button>
+      <button onClick={() => navigate("/training")}>Training</button>
       <button onClick={() => navigate(-1)}>Back</button>
       <Footer
         style={{
