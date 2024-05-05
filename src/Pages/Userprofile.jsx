@@ -166,6 +166,11 @@ const UserProfile = () => {
               </strong>{" "}
              {heros?.payload?.equipment}
               <br />
+              <strong className="inline-block mt-2">
+                Course:
+              </strong>{" "}
+             {heros?.payload?.currentTraining}
+              <br />
             </p>
             <Tilt className="Tilt" options={{ max: 25, scale: 1.1 }}>
               <img
@@ -226,7 +231,7 @@ const NewForm = () => {
           overlay({
             type: "success",
             title: "Success",
-            content: "Login Successful. Welcome to the League of Heroes!",
+            content: "Profile Updated Sucessfully. View your profile on the right!",
             okText: "Continue",
             onOk: () => {
               queryClient.invalidateQueries('developers-detail')
