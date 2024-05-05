@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import { UserProvider } from "./Context/UserContext";
 import { OverlayProvider } from "./Context/OverlayContext";
 import ReactDOM from "react-dom/client";
@@ -80,77 +80,162 @@ const router = createBrowserRouter([
   },
 ]);
 
+const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  return (
+    <header>
+      {/* Desktop Menu */}
+      <nav className="hidden lg:block bg-black border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
+        <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
+          <a href="/" className="flex items-center">
+            <img
+              src={logoWebcup}
+              className="mr-3 h-6 sm:h-9"
+              alt="Flowbite Logo"
+              style={{
+                height: "50px",
+              }}
+            />
+            <span
+              className="self-center text-xl font-semibold whitespace-nowrap text-white"
+              style={{
+                fontSize: "0.8rem",
+              }}
+            >
+              Vigilant Ventures Institute VVI
+            </span>
+          </a>
+          <div className="flex items-center lg:order-2">
+            <a
+              href="/"
+              className="text-white px-3 py-2 rounded hover:bg-gray-700"
+            >
+              Home
+            </a>
+            <a
+              href="/profile"
+              className="text-white px-3 py-2 rounded hover:bg-gray-700"
+            >
+              Profile
+            </a>
+            <a
+              href="/training"
+              className="text-white px-3 py-2 rounded hover:bg-gray-700"
+            >
+              Training
+            </a>
+            <a
+              href="/library"
+              className="text-white px-3 py-2 rounded hover:bg-gray-700"
+            >
+              Library
+            </a>
+          </div>
+        </div>
+      </nav>
+      {/* Mobile Menu */}
+      <div className="lg:hidden bg-black border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
+        <div className="flex justify-between items-center mx-auto max-w-screen-xl">
+          <a href="/" className="flex items-center">
+            <img
+              src={logoWebcup}
+              className="mr-3 h-6 sm:h-9"
+              alt="Flowbite Logo"
+              style={{
+                height: "50px",
+              }}
+            />
+            <span
+              className="self-center text-xl font-semibold whitespace-nowrap text-white"
+              style={{
+                fontSize: "0.8rem",
+              }}
+            >
+              Vigilant Ventures Institute VVI
+            </span>
+          </a>
+          <div className="flex items-center lg:order-2">
+            {/* Hamburger Menu Icon */}
+            <button
+              onClick={toggleMenu}
+              className="block lg:hidden text-gray-300 hover:text-white focus:text-white focus:outline-none"
+            >
+              <svg
+                className="w-6 h-6 fill-current"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M3 5h18a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2zm0 6h18a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2zm0 6h18a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2z"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      {/* Mobile Menu */}
+      <div
+        className={`${
+          isMenuOpen ? "block" : "hidden"
+        } lg:hidden bg-black fixed inset-0 z-50`}
+      >
+        <div className="flex justify-end">
+          <button
+            onClick={toggleMenu}
+            className="text-white m-4 focus:outline-none"
+          >
+            Close
+          </button>
+        </div>
+        <div className="flex flex-col items-center justify-center h-full">
+          <a
+            href="/"
+            className="text-white py-4 text-xl hover:text-gray-400"
+            onClick={toggleMenu}
+          >
+            Home
+          </a>
+          <a
+            href="/profile"
+            className="text-white py-4 text-xl hover:text-gray-400"
+            onClick={toggleMenu}
+          >
+            Profile
+          </a>
+          <a
+            href="/training"
+            className="text-white py-4 text-xl hover:text-gray-400"
+            onClick={toggleMenu}
+          >
+            Training
+          </a>
+          <a
+            href="/library"
+            className="text-white py-4 text-xl hover:text-gray-400"
+            onClick={toggleMenu}
+          >
+            Library
+          </a>
+        </div>
+      </div>
+    </header>
+  );
+};
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <Suspense fallback={<Loading />}>
         <UserProvider>
           <OverlayProvider>
-            <header>
-              <nav className="bg-black border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
-                <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-                  <a href="/" className="flex items-center">
-                    <img
-                      src={logoWebcup}
-                      className="mr-3 h-6 sm:h-9"
-                      alt="Flowbite Logo"
-                      style={{
-                        height: "50px",
-                      }}
-                    />
-                    <span
-                      className="self-center text-xl font-semibold whitespace-nowrap text-white"
-                      style={{
-                        fontSize: "0.8rem",
-                      }}
-                    >
-                      Vigilant Ventures Institute VVI
-                    </span>
-                  </a>
-                  <div className="flex items-center lg:order-2"></div>
-                  <div
-                    className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
-                    id="mobile-menu-2"
-                  >
-                    <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
-                      <li>
-                        <a
-                          href="/"
-                          className="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"
-                          aria-current="page"
-                        >
-                          Home
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="/profile"
-                          className="block py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-                        >
-                          Profile
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="/training"
-                          className="block py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-                        >
-                          Training
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="/library"
-                          className="block py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-                        >
-                          Library
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </nav>
-            </header>
+            <Header />
             <RouterProvider router={router} size={20} />
           </OverlayProvider>
         </UserProvider>
