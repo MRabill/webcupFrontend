@@ -5,13 +5,11 @@ import InfiniteStones from "../Components/canvas/infinitestones";
 import StarsCanvas from "../Components/canvas/Stars";
 import { useUser } from "../Context/UserContext";
 import background from "../Assets/landingPage.jpg";
-import backgroundSound from "../Assets/paper.mp3";
+
 
 const Library = () => {
   const { user, signing, logout } = useUser();
-  const audio = new Audio(backgroundSound);
-  audio.loop = true;
-  audio.play();
+
   // Dummy data for superhero news
   const superheroNews = [
     {
@@ -65,7 +63,7 @@ const Library = () => {
 
           <div className="flex justify-between  h-screen z-10">
             {/* Left side: Superhero news */}
-            <div className="flex flex-col justify-center items-center w-1/4">
+            <div className="flex flex-col justify-center items-center w-1/4 pl-5">
               {superheroNews.slice(0, 3).map((newsItem, index) => (
                 <motion.div
                   key={index}
@@ -99,25 +97,20 @@ const Library = () => {
             {/* Middle: InfiniteStones */}
 
             <motion.div
-              initial={{ y: "100%" }}
-              animate={{
-                y: 0,
-              }}
-              exit={{ y: "-100%" }}
-              transition={{
-                type: "spring",
-                stiffness: 260,
-                damping: 20,
-                delay: 0.6,
-              }}
-            >
-              <div className="flex justify-center w-1/2">
-                <InfiniteStones />
-              </div>
-            </motion.div>
+        initial={{ y: "100%" }}
+        animate={{
+          y: 0,
+        }}
+        exit={{ y: "-100%" }}
+        transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.6 }}
+        className="flex justify-center items-center h-screen "
+        style={{width:"400px"}}
+      >
+        <InfiniteStones/>
+      </motion.div>
 
             {/* Right side: Superhero news */}
-            <div className="flex flex-col justify-center items-center w-1/4">
+            <div className="flex flex-col justify-center items-center w-1/4 pr-5">
               {superheroNews.slice(3).map((newsItem, index) => (
                 <motion.div
                   key={index}
