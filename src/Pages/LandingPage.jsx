@@ -26,6 +26,24 @@ teleportSound.loop = false;
 audio.loop = true;
 audio.play();
 
+const Typewriter = ({ text, delay }) => {
+  const [currentText, setCurrentText] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (currentIndex < text.length) {
+      const timeout = setTimeout(() => {
+        setCurrentText((prevText) => prevText + text[currentIndex]);
+        setCurrentIndex((prevIndex) => prevIndex + 1);
+      }, delay);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [currentIndex, delay, text]);
+
+  return <span>{currentText}</span>;
+};
+
 const LandingPage = () => {
   const screenWidth =
     window.innerWidth ||
@@ -305,8 +323,11 @@ const LandingPage = () => {
                     marginTop: "20px",
                   }}
                 >
-                  "You have a gift. You have power. And with great power comes
+                  <Typewriter
+                    text="You have a gift. You have power. And with great power comes
                   great responsibility."
+                    delay={100}
+                  />
                 </p>
               </motion.div>
             </Col>
