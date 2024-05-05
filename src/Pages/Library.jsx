@@ -3,8 +3,13 @@ import { motion } from "framer-motion";
 import { Tilt } from "react-tilt";
 import InfiniteStones from "../Components/canvas/infinitestones";
 import StarsCanvas from "../Components/canvas/Stars";
+import { useUser } from "../Context/UserContext";
+import background from "../Assets/landingPage.jpg";
+
 
 const Library = () => {
+    const { user, signing, logout } = useUser();
+
     // Dummy data for superhero news
     const superheroNews = [
         {
@@ -34,81 +39,109 @@ const Library = () => {
     ];
 
     return (
-        <div className="relative">
-            {/* Background */}
-            <div
-                className="absolute inset-0 bg-gray-900"
-                style={{
-                    zIndex: -1,
-                }}
-            ></div>
+        <div>
+            {user?.username !== "" ? (
+                <div className="relative">
+                    {/* Background */}
+                    <div
+                        className="absolute inset-0 bg-gray-900"
+                        style={{
+                            zIndex: -1,
+                        }}
+                    ></div>
 
-            {/* StarsCanvas */}
-            <div className="absolute inset-0 z-0">
-                <StarsCanvas />
-            </div>
+                    {/* StarsCanvas */}
+                    <div className="absolute inset-0 z-0">
+                        <StarsCanvas />
+                    </div>
 
-            <div className="flex justify-between  h-screen z-10">
-                {/* Left side: Superhero news */}
-                <div className="flex flex-col justify-center items-center w-1/4">
-                    {superheroNews.slice(0, 3).map((newsItem, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ rotateY: -45 }}
-                            animate={{ rotateY: 0 }}
-                            exit={{ rotateY: -45 }}
-                            transition={{ type: "spring", stiffness: 260, damping: 20 }}
-                            className="w-full mb-4"
-                        >
-                            <Tilt className="Tilt" options={{ max: 45, scale: 1.1 }}>
-                                <div
-                                    style={{
-                                        background: "linear-gradient(90deg, rgba(37,26,79,1) 5%, rgba(85,60,181,1) 100%)",
-                                        opacity: "0.5",
-                                    }}
-                                    className="Tilt-inner bg-purple-900 shadow-md p-4 rounded-2xl"
+                    <div className="flex justify-between  h-screen z-10">
+                        {/* Left side: Superhero news */}
+                        <div className="flex flex-col justify-center items-center w-1/4">
+                            {superheroNews.slice(0, 3).map((newsItem, index) => (
+                                <motion.div
+                                    key={index}
+                                    initial={{ rotateY: -45 }}
+                                    animate={{ rotateY: 0 }}
+                                    exit={{ rotateY: -45 }}
+                                    transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                                    className="w-full mb-4"
                                 >
-                                    <h2 className="text-white text-lg font-semibold mb-2">{newsItem.title}</h2>
-                                    <p className="text-white text-sm">{newsItem.description}</p>
-                                </div>
-                            </Tilt>
-                        </motion.div>
-                    ))}
-                </div>
+                                    <Tilt className="Tilt" options={{ max: 45, scale: 1.1 }}>
+                                        <div
+                                            style={{
+                                                background: "linear-gradient(90deg, rgba(37,26,79,1) 5%, rgba(85,60,181,1) 100%)",
+                                                opacity: "0.5",
+                                            }}
+                                            className="Tilt-inner bg-purple-900 shadow-md p-4 rounded-2xl"
+                                        >
+                                            <h2 className="text-white text-lg font-semibold mb-2">{newsItem.title}</h2>
+                                            <p className="text-white text-sm">{newsItem.description}</p>
+                                        </div>
+                                    </Tilt>
+                                </motion.div>
+                            ))}
+                        </div>
 
-                {/* Middle: InfiniteStones */}
-                <div className="flex justify-center w-1/2">
-                    <InfiniteStones />
-                </div>
+                        {/* Middle: InfiniteStones */}
+                        <div className="flex justify-center w-1/2">
+                            <InfiniteStones />
+                        </div>
 
-                {/* Right side: Superhero news */}
-                <div className="flex flex-col justify-center items-center w-1/4">
-                    {superheroNews.slice(3).map((newsItem, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ rotateY: 45 }}
-                            animate={{ rotateY: 0 }}
-                            exit={{ rotateY: 45 }}
-                            transition={{ type: "spring", stiffness: 260, damping: 20 }}
-                            className="w-full mb-4"
-                        >
-                            <Tilt className="Tilt" options={{ max: 45, scale: 1.1 }}>
-                                <div
-                                    style={{
-                                        background: "linear-gradient(90deg, rgba(37,26,79,1) 5%, rgba(85,60,181,1) 100%)",
-                                        opacity: "0.5",
-                                    }}
-                                    className="Tilt-inner bg-purple-900 shadow-md p-4 rounded-2xl"
+                        {/* Right side: Superhero news */}
+                        <div className="flex flex-col justify-center items-center w-1/4">
+                            {superheroNews.slice(3).map((newsItem, index) => (
+                                <motion.div
+                                    key={index}
+                                    initial={{ rotateY: 45 }}
+                                    animate={{ rotateY: 0 }}
+                                    exit={{ rotateY: 45 }}
+                                    transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                                    className="w-full mb-4"
                                 >
-                                    <h2 className="text-white text-lg font-semibold mb-2">{newsItem.title}</h2>
-                                    <p className="text-white text-sm">{newsItem.description}</p>
-                                </div>
-                            </Tilt>
-                        </motion.div>
-                    ))}
-                </div>
-            </div>
-        </div>
+                                    <Tilt className="Tilt" options={{ max: 45, scale: 1.1 }}>
+                                        <div
+                                            style={{
+                                                background: "linear-gradient(90deg, rgba(37,26,79,1) 5%, rgba(85,60,181,1) 100%)",
+                                                opacity: "0.5",
+                                            }}
+                                            className="Tilt-inner bg-purple-900 shadow-md p-4 rounded-2xl"
+                                        >
+                                            <h2 className="text-white text-lg font-semibold mb-2">{newsItem.title}</h2>
+                                            <p className="text-white text-sm">{newsItem.description}</p>
+                                        </div>
+                                    </Tilt>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </div>) : (
+                <>
+                    <img
+                        src={background}
+                        style={{
+                            position: "absolute",
+                            height: "100vh",
+                            width: "100%",
+                            zIndex: "-1000",
+                        }}
+                    />
+                    <div
+                        style={{
+                            height: "100vh",
+                            width: "100vw",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                        }}
+                    >
+                        <button className="kave-btn" onClick={() => navigate("/")}>
+                            <span className="kave-line"></span>
+                            "Sign in to continue"
+                        </button>
+                    </div>
+                </>
+            )}</div>
     );
 };
 
