@@ -46,7 +46,7 @@ const Library = () => {
 
   return (
     <div>
-      {user?.username !== "" ? (
+      {user?.username !== "" && user?.username ? (
         <div className="relative">
           {/* Background */}
           <div
