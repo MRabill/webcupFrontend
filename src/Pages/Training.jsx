@@ -10,12 +10,14 @@ import TrainingComponent from "../Components/TrainingComponent";
 import background from "../Assets/landingPage.jpg";
 import { useUser } from "../Context/UserContext";
 import { useNavigate } from "../../utils";
-
+import backgroundSound from "../Assets/training.mp3";
 const Training = () => {
   const [selectedAvatar, setSelectedAvatar] = useState("avatar5");
   const { user, signing, logout } = useUser();
   const navigate = useNavigate();
-
+  const audio = new Audio(backgroundSound);
+  audio.loop = true;
+  audio.play();
   const handleAvatarClick = (avatarType) => {
     setSelectedAvatar(avatarType);
   };
