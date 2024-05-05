@@ -14,7 +14,9 @@ import squadBook from "../assets/squadBook.png";
 import backgroundSound from "../Assets/hawken.mp3";
 import { useOverlay } from "../Context/OverlayContext";
 import { useUser } from "../Context/UserContext";
-import { url, useMutation, postData, useQuery, fetchData, useQueryClient} from "../../utils";
+import { url, useMutation, postData, useQuery, fetchData, useQueryClient } from "../../utils";
+import background from "../Assets/landingPage.jpg";
+
 
 
 const UserProfile = () => {
@@ -38,150 +40,156 @@ const UserProfile = () => {
   );
 
 
- 
+
   return (
-    <div className="flex flex-col md:flex-row justify-center items-center">
-      <div className="absolute top-13 sm:top-13 md:top-16 lg:top-22 xl:top-26 right-1 sm:right-3 md:right-5 lg:right-9 xl:right-13 z-50">
-        <button
-          style={{ height: "50px", marginTop: "20px" }}
-          className="kave-btn"
-          onClick={() => {
-            logout();
-          }}
-        >
-          Log-out
-        </button>
+    <>
+      <div>
+        <div className="background" />
       </div>
-
-      {/* Left card */}
-      <motion.div
-        initial={{ x: "-100%" }}
-        animate={{ x: 0 }}
-        exit={{ x: "-100%" }}
-        transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.5 }}
-        className="relative bg-151031 p-5 rounded-2xl md:w-[480px] w-full mr-4 "
-      >
-        <Tilt className="Tilt" options={{ max: 45, scale: 1.1 }}>
-          <div
-            style={{
-              background:
-                "linear-gradient(90deg, rgba(37,26,79,1) 5%, rgba(85,60,181,1) 100%)",
-              opacity: "0.5",
+      <div className="flex flex-col md:flex-row justify-center items-center">
+        <div className="absolute top-13 sm:top-13 md:top-16 lg:top-22 xl:top-26 right-1 sm:right-3 md:right-5 lg:right-9 xl:right-13 z-50">
+          <button
+            style={{ height: "50px", marginTop: "20px" }}
+            className="kave-btn"
+            onClick={() => {
+              logout();
             }}
-            className="Tilt-inner bg-purple-900 shadow-md p-4 rounded-2xl"
           >
-            {/* Content for right card */}
-            <h2 className="text-lg font-semibold mb-4 text-white">
-              Power Profile
-            </h2>
-            <p className="text-sm text-white">
-              <strong>Name:</strong> {heros?.payload?.heroName}
-              <br />
-              <span className="inline-block mt-2">
-                <strong>Power:</strong> {heros?.payload?.superpower}
-              </span>
-              <br />
-              <span className="inline-block mt-2">
-                <strong>Completion:</strong> 75%
-              </span>
-              <br />
-            </p>
-            <Tilt className="Tilt" options={{ max: 25, scale: 1.1 }}>
-              <img
-                src={squadBook}
-                alt="squad"
-                className="w-62 h-auto object-cover rounded-2xl'"
-              />
-            </Tilt>
-            {/* Button */}
-            <button
-              className="absolute top-0 right-0 mt-4 mr-4 px-4 py-2 bg-white text-black rounded-lg shadow"
-              onClick={() => {
-                overlay({
-                  type: "form",
-                  title: "Edit Profile",
-                  content: "Please fill the form below",
-                  form: NewForm,
-                  onOk: () => {
-                    console.log("Okay");
-                  },
-                  onCancel: () => {
-                    console.log("Cancel");
-                  },
-                });
+            Log-out
+          </button>
+        </div>
+
+        {/* Left card */}
+        <motion.div
+          initial={{ x: "-100%" }}
+          animate={{ x: 0 }}
+          exit={{ x: "-100%" }}
+          transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.5 }}
+          className="relative bg-151031 p-5 rounded-2xl md:w-[480px] w-full mr-4 "
+        >
+          <Tilt className="Tilt" options={{ max: 45, scale: 1.1 }}>
+            <div
+              style={{
+                background:
+                  "linear-gradient(90deg, rgba(37,26,79,1) 5%, rgba(85,60,181,1) 100%)",
+                opacity: "0.5",
               }}
+              className="Tilt-inner bg-purple-900 shadow-md p-4 rounded-2xl"
             >
-              Edit
-            </button>
-          </div>
-        </Tilt>
-      </motion.div>
+              {/* Content for right card */}
+              <h2 className="text-lg font-semibold mb-4 text-white">
+                Power Profile
+              </h2>
+              <p className="text-sm text-white">
+                <strong>Name:</strong> {heros?.payload?.heroName}
+                <br />
+                <span className="inline-block mt-2">
+                  <strong>Power:</strong> {heros?.payload?.superpower}
+                </span>
+                <br />
+                <span className="inline-block mt-2">
+                  <strong>Completion:</strong> 75%
+                </span>
+                <br />
+              </p>
+              <Tilt className="Tilt" options={{ max: 25, scale: 1.1 }}>
+                <img
+                  src={squadBook}
+                  alt="squad"
+                  className="w-62 h-auto object-cover rounded-2xl'"
+                />
+              </Tilt>
+              {/* Button */}
+              <button
+                className="absolute top-0 right-0 mt-4 mr-4 px-4 py-2 bg-white text-black rounded-lg shadow"
+                onClick={() => {
+                  overlay({
+                    type: "form",
+                    title: "Edit Profile",
+                    content: "Please fill the form below",
+                    form: NewForm,
+                    onOk: () => {
+                      console.log("Okay");
+                    },
+                    onCancel: () => {
+                      console.log("Cancel");
+                    },
+                  });
+                }}
+              >
+                Edit
+              </button>
+            </div>
+          </Tilt>
+        </motion.div>
 
-      {/* Avatar */}
+        {/* Avatar */}
 
-      <motion.div
-        initial={{ y: "100%" }}
-        animate={{
-          y: 0,
-        }}
-        exit={{ y: "-100%" }}
-        transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.6 }}
-        className="flex justify-center items-center h-screen "
-      >
-        <AvatarsCanvas />
-      </motion.div>
+        <motion.div
+          initial={{ y: "100%" }}
+          animate={{
+            y: 0,
+          }}
+          exit={{ y: "-100%" }}
+          transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.6 }}
+          className="flex justify-center items-center h-screen "
+        >
+          <AvatarsCanvas />
+        </motion.div>
 
-      {/* Right card */}
-      <motion.div
-        initial={{ x: "100%" }}
-        animate={{ x: 0 }}
-        exit={{ x: "100%" }}
-        transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.5 }}
-        className="bg-151031 p-5 rounded-2xl md:w-[480px] w-full mr-4 "
-      >
-        <Tilt className="Tilt" options={{ max: 45, scale: 1.1 }}>
-          <div
-            style={{
-              background:
-                "linear-gradient(90deg, rgba(37,26,79,1) 5%, rgba(85,60,181,1) 100%)",
-              opacity: "0.5",
-            }}
-            className="Tilt-inner bg-purple-900 shadow-md p-4 rounded-2xl"
-          >
-            {/* Content for right card */}
-            <h2 className="text-lg font-semibold mb-2 text-white">
-              Hero Profile
-            </h2>
-            <p className="text-sm text-white">
-              <strong>Weaknesses:</strong> {heros?.payload?.weakness}
-              <br />
-              <strong className="inline-block mt-2">
-                Goals/Aspirations:
-              </strong>
-              {heros?.payload?.goals}
-              <br />
-              <strong className="inline-block mt-2">
-                Equipment/Tools:
-              </strong>{" "}
-             {heros?.payload?.equipment}
-              <br />
-              <strong className="inline-block mt-2">
-                Course:
-              </strong>{" "}
-             {heros?.payload?.currentTraining}
-              <br />
-            </p>
-            <Tilt className="Tilt" options={{ max: 25, scale: 1.1 }}>
-              <img
-                src={stat}
-                alt="stat"
-                className="w-full h-full object-cover rounded-2xl'"
-              />
-            </Tilt>
-          </div>
-        </Tilt>
-      </motion.div>
-    </div>
+        {/* Right card */}
+        <motion.div
+          initial={{ x: "100%" }}
+          animate={{ x: 0 }}
+          exit={{ x: "100%" }}
+          transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.5 }}
+          className="bg-151031 p-5 rounded-2xl md:w-[480px] w-full mr-4 "
+        >
+          <Tilt className="Tilt" options={{ max: 45, scale: 1.1 }}>
+            <div
+              style={{
+                background:
+                  "linear-gradient(90deg, rgba(37,26,79,1) 5%, rgba(85,60,181,1) 100%)",
+                opacity: "0.5",
+              }}
+              className="Tilt-inner bg-purple-900 shadow-md p-4 rounded-2xl"
+            >
+              {/* Content for right card */}
+              <h2 className="text-lg font-semibold mb-2 text-white">
+                Hero Profile
+              </h2>
+              <p className="text-sm text-white">
+                <strong>Weaknesses:</strong> {heros?.payload?.weakness}
+                <br />
+                <strong className="inline-block mt-2">
+                  Goals/Aspirations:
+                </strong>
+                {heros?.payload?.goals}
+                <br />
+                <strong className="inline-block mt-2">
+                  Equipment/Tools:
+                </strong>{" "}
+                {heros?.payload?.equipment}
+                <br />
+                <strong className="inline-block mt-2">
+                  Institute:
+                </strong>{" "}
+                {heros?.payload?.currentTraining}
+                <br />
+              </p>
+              <Tilt className="Tilt" options={{ max: 25, scale: 1.1 }}>
+                <img
+                  src={stat}
+                  alt="stat"
+                  className="w-full h-full object-cover rounded-2xl'"
+                />
+              </Tilt>
+            </div>
+          </Tilt>
+        </motion.div>
+      </div>
+    </>
+
   );
 };
 
@@ -226,19 +234,19 @@ const NewForm = () => {
       }),
     {
       onSuccess: (data) => {
-       
-          overlay({
-            type: "success",
-            title: "Success",
-            content: "Profile Updated Sucessfully. View your profile on the right!",
-            okText: "Continue",
-            onOk: () => {
-              queryClient.invalidateQueries('developers-detail')
-            },
-            onCancel: () => {
-             
-            },
-          });
+
+        overlay({
+          type: "success",
+          title: "Success",
+          content: "Profile Updated Sucessfully. View your profile on the right!",
+          okText: "Continue",
+          onOk: () => {
+            queryClient.invalidateQueries('developers-detail')
+          },
+          onCancel: () => {
+
+          },
+        });
       },
       onError: (data) => {
         overlay({
@@ -278,7 +286,7 @@ const NewForm = () => {
                 <input
                   id="email"
                   name="weakness"
-                 defaultValue={heros?.payload?.weakness}
+                  defaultValue={heros?.payload?.weakness}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   style={{
                     fontFamily: "Poppins",
@@ -325,7 +333,7 @@ const NewForm = () => {
                 <input
                   id="email"
                   name="equipment"
-                
+
                   defaultValue={heros?.payload?.equipment}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   style={{
