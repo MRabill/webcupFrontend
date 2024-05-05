@@ -1,0 +1,11 @@
+Model Information:
+* title:	Infinity Gauntlet (Textured) (No Rig)
+* source:	https://sketchfab.com/3d-models/infinity-gauntlet-textured-no-rig-29f35a6194cb4c36a2c271c747c72c80
+* author:	CAPTAAINR (https://sketchfab.com/CAPTAAINR)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Infinity Gauntlet (Textured) (No Rig)" (https://sketchfab.com/3d-models/infinity-gauntlet-textured-no-rig-29f35a6194cb4c36a2c271c747c72c80) by CAPTAAINR (https://sketchfab.com/CAPTAAINR) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
