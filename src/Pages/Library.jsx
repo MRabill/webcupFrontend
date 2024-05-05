@@ -5,11 +5,11 @@ import InfiniteStones from "../Components/canvas/infinitestones";
 import StarsCanvas from "../Components/canvas/Stars";
 import { useUser } from "../Context/UserContext";
 import background from "../Assets/landingPage.jpg";
-
+import { useNavigate } from "../../utils";
 
 const Library = () => {
   const { user, signing, logout } = useUser();
-
+  const navigate = useNavigate();
   // Dummy data for superhero news
   const superheroNews = [
     {
@@ -70,7 +70,12 @@ const Library = () => {
                   initial={{ x: "-100%" }}
                   animate={{ x: 0 }}
                   exit={{ x: "-100%" }}
-                  transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.5 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 260,
+                    damping: 20,
+                    delay: 0.5,
+                  }}
                   className="w-full mb-4"
                 >
                   <Tilt className="Tilt" options={{ max: 45, scale: 1.1 }}>
@@ -97,17 +102,22 @@ const Library = () => {
             {/* Middle: InfiniteStones */}
 
             <motion.div
-        initial={{ y: "100%" }}
-        animate={{
-          y: 0,
-        }}
-        exit={{ y: "-100%" }}
-        transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.6 }}
-        className="flex justify-center items-center h-screen "
-        style={{width:"400px"}}
-      >
-        <InfiniteStones/>
-      </motion.div>
+              initial={{ y: "100%" }}
+              animate={{
+                y: 0,
+              }}
+              exit={{ y: "-100%" }}
+              transition={{
+                type: "spring",
+                stiffness: 260,
+                damping: 20,
+                delay: 0.6,
+              }}
+              className="flex justify-center items-center h-screen "
+              style={{ width: "400px" }}
+            >
+              <InfiniteStones />
+            </motion.div>
 
             {/* Right side: Superhero news */}
             <div className="flex flex-col justify-center items-center w-1/4 pr-5">
