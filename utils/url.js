@@ -8,6 +8,7 @@ const url = {
   REGISTER_USER: `${baseUrl}/APIBACKEND/post-user`,
   SAVE_DETAILS: `${baseUrl}/APIBACKEND/save-detail`,
   GET_DETAILS: (username) => `${baseUrl}/APIBACKEND/get-details/${username}`,
+  SAVE_TRAINING: `${baseUrl}/APIBACKEND/save-training`,
 };
 
 export default url;

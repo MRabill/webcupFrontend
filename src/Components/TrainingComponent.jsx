@@ -6,6 +6,9 @@ import { Button, Modal } from "antd";
 import { FaRegLightbulb, FaTrophy, FaCheckCircle } from "react-icons/fa";
 import sword from "../Assets/sword.mp3";
 import "../Styles/landingPage.css";
+import { useOverlay } from "../Context/OverlayContext";
+import { useUser } from "../Context/UserContext";
+import { url, useMutation, postData } from "../../utils";
 
 const swordSound = new Audio(sword);
 
@@ -13,6 +16,45 @@ swordSound.loop = false;
 
 const TrainingComponent = ({ onChangeAvatar, selectedAvatar }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const { overlay, setIsOpen } = useOverlay();
+  const { user, signing, logout } = useUser();
+
+  const saveTraining = useMutation(
+    async (values) =>
+      await postData({
+        url: url?.SAVE_TRAINING,
+        body: {
+          ...values,
+          user: user?.email,
+          email: user?.username,
+        },
+      }),
+    {
+      onSuccess: (data) => {
+        overlay({
+          type: "success",
+          title: "Success",
+          content: "You have successfully joined the adventure!",
+          okText: "Continue",
+          onOk: () => {},
+          onCancel: () => {},
+        });
+      },
+      onError: (data) => {
+        overlay({
+          type: "warning",
+          title: "Failed",
+          content: "Register Failed. Please try again.",
+          onOk: () => {
+            // logout();
+          },
+          onCancel: () => {
+            // logout();
+          },
+        });
+      },
+    }
+  );
 
   const Block = ({ className, ...rest }) => {
     return (
@@ -65,7 +107,8 @@ const TrainingComponent = ({ onChangeAvatar, selectedAvatar }) => {
         title = "Superhero Training Academy";
         content = (
           <>
-            Welcome to the prestigious Superhero Training Academy, where ordinary individuals become extraordinary defenders of justice!
+            Welcome to the prestigious Superhero Training Academy, where
+            ordinary individuals become extraordinary defenders of justice!
             <br />
             <span
               className="text-gold-400"
@@ -75,7 +118,9 @@ const TrainingComponent = ({ onChangeAvatar, selectedAvatar }) => {
                 color: "black",
               }}
             >
-              Our mission is to nurture and unleash the full potential of aspiring superheroes, equipping them with the skills and wisdom to combat evil forces threatening our world.
+              Our mission is to nurture and unleash the full potential of
+              aspiring superheroes, equipping them with the skills and wisdom to
+              combat evil forces threatening our world.
             </span>
           </>
         );
@@ -84,7 +129,8 @@ const TrainingComponent = ({ onChangeAvatar, selectedAvatar }) => {
         title = "Empowerment Institute";
         content = (
           <>
-            Step into the Empowerment Institute, a beacon of hope and unity in a world of chaos and division.
+            Step into the Empowerment Institute, a beacon of hope and unity in a
+            world of chaos and division.
             <br />
             <span
               className="text-gold-400"
@@ -94,7 +140,9 @@ const TrainingComponent = ({ onChangeAvatar, selectedAvatar }) => {
                 color: "black",
               }}
             >
-              Our dedication lies in fostering empathy, understanding, and unity among all beings. Together, we can create a brighter future for generations to come.
+              Our dedication lies in fostering empathy, understanding, and unity
+              among all beings. Together, we can create a brighter future for
+              generations to come.
             </span>
           </>
         );
@@ -105,7 +153,10 @@ const TrainingComponent = ({ onChangeAvatar, selectedAvatar }) => {
     }
 
     return (
-      <Block className="col-span-12 text-3xl leading-snug" style={{ background: "rgba(255, 255, 255, 0.5)" }}>
+      <Block
+        className="col-span-12 text-3xl leading-snug"
+        style={{ background: "rgba(255, 255, 255, 0.5)" }}
+      >
         <p
           style={{
             fontFamily: "Orbitron",
@@ -135,22 +186,45 @@ const TrainingComponent = ({ onChangeAvatar, selectedAvatar }) => {
 
     return (
       <>
-        <Block className="col-span-12 flex flex-col items-center gap-4 md:col-span-3" style={{ background: "rgba(255, 255, 255, 0.5)" }}>
+        <Block
+          className="col-span-12 flex flex-col items-center gap-4 md:col-span-3"
+          style={{ background: "rgba(255, 255, 255, 0.5)" }}
+        >
           <FiMapPin className="text-4xl" />
-          <p className="text-center text-lg text-zinc-400" style={{ color: "black" }}>Superhero Academy Location: {location}</p>
+          <p
+            className="text-center text-lg text-zinc-400"
+            style={{ color: "black" }}
+          >
+            Superhero Academy Location: {location}
+          </p>
         </Block>
         <div className="col-span-12 flex items-center gap-4 md:col-span-9">
           <div className="flex flex-col items-center gap-2">
             <FaRegLightbulb className="text-6xl text-white mb-2" />
-            <span className="text-white font-bold" style={{ fontFamily: "Orbitron" }}>Mission: {mentors[selectedAvatar].mission}</span>
+            <span
+              className="text-white font-bold"
+              style={{ fontFamily: "Orbitron" }}
+            >
+              Mission: {mentors[selectedAvatar].mission}
+            </span>
           </div>
           <div className="flex flex-col items-center gap-2">
             <FaTrophy className="text-6xl text-white mb-2" />
-            <span className="text-white font-bold" style={{ fontFamily: "Orbitron" }}>Power: {mentors[selectedAvatar].power}</span>
+            <span
+              className="text-white font-bold"
+              style={{ fontFamily: "Orbitron" }}
+            >
+              Power: {mentors[selectedAvatar].power}
+            </span>
           </div>
           <div className="flex flex-col items-center gap-2">
             <FaCheckCircle className="text-6xl text-white mb-2" />
-            <span className="text-white font-bold" style={{ fontFamily: "Orbitron" }}>Rank: {mentors[selectedAvatar].rank}</span>
+            <span
+              className="text-white font-bold"
+              style={{ fontFamily: "Orbitron" }}
+            >
+              Rank: {mentors[selectedAvatar].rank}
+            </span>
           </div>
         </div>
       </>
@@ -164,8 +238,18 @@ const TrainingComponent = ({ onChangeAvatar, selectedAvatar }) => {
   const ModalContent = () => {
     return (
       <div style={{ textAlign: "center" }}>
-        <h2 style={{ fontFamily: "Orbitron", fontSize: "2rem", marginBottom: "20px" }}>Enroll Now!</h2>
-        <p style={{ color: "black", fontSize: "1.2rem" }}>Unlock your potential and become a true hero!</p>
+        <h2
+          style={{
+            fontFamily: "Orbitron",
+            fontSize: "2rem",
+            marginBottom: "20px",
+          }}
+        >
+          Enroll Now!
+        </h2>
+        <p style={{ color: "black", fontSize: "1.2rem" }}>
+          Unlock your potential and become a true hero!
+        </p>
       </div>
     );
   };
@@ -184,14 +268,23 @@ const TrainingComponent = ({ onChangeAvatar, selectedAvatar }) => {
         <LocationBlock />
       </motion.div>
       <div style={{ textAlign: "right" }}>
-        <button className="kave-btn" style ={{marginRight:"15px"}}
-          onClick={() => setIsModalVisible(true) && swordSound.play()}>
+        <button
+          className="kave-btn"
+          style={{ marginRight: "15px" }}
+          onClick={() => {
+            saveTraining.mutate({
+              training: "Superhero Training Academy",
+            });
+          }}
+        >
           <span className="kave-line"></span>
-          Join the Adventure</button>
-        <button className="kave-btn"
-          onClick={onChangeAvatar}>
+          Join the Adventure
+        </button>
+        <button className="kave-btn" onClick={onChangeAvatar}>
           <span className="kave-line"></span>
-          Galactic Guides</button>      </div>
+          Galactic Guides
+        </button>{" "}
+      </div>
       {/* Modal */}
       <Modal
         title={null}
@@ -199,7 +292,11 @@ const TrainingComponent = ({ onChangeAvatar, selectedAvatar }) => {
         onCancel={() => setIsModalVisible(false)}
         footer={null}
         centered
-        maskStyle={{ background: "linear-gradient(90deg, rgba(37,26,79,1) 5%, rgba(85,60,181,1) 100%)", opacity: "0.5" }}
+        maskStyle={{
+          background:
+            "linear-gradient(90deg, rgba(37,26,79,1) 5%, rgba(85,60,181,1) 100%)",
+          opacity: "0.5",
+        }}
         bodyStyle={{ padding: "40px" }}
         width={400}
       >
