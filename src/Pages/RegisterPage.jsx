@@ -47,13 +47,13 @@ const RegisterPage = () => {
             okText: "Continue",
             onOk: () => {
               swordSound.play();
-              localStorage.setItem("username", data?.data?.user?.username);
-              localStorage.setItem("signing", true);
+              // localStorage.setItem("username", data?.data?.user?.username);
+              // localStorage.setItem("signing", true);
               window.location.href = "/";
               setOtp(data?.data?.payload?.otp);
             },
             onCancel: () => {
-              localStorage.setItem("signing", false);
+              // localStorage.setItem("signing", false);
             },
           });
       },
@@ -65,10 +65,10 @@ const RegisterPage = () => {
           content: "Login Attempt Failed. Please try again.",
 
           onOk: () => {
-            localStorage.setItem("signing", false);
+            // localStorage.setItem("signing", false);
           },
           onCancel: () => {
-            localStorage.setItem("signing", false);
+            // localStorage.setItem("signing", false);
           },
         });
       },
