@@ -43,7 +43,7 @@ const RegisterPage = () => {
             type: "success",
             title: "Success",
             content:
-              "Registration Successful. Welcome to the League of Heroes!",
+              "Congratulations! Your registration was successful. Welcome to the Titans team!",
             okText: "Continue",
             onOk: () => {
               swordSound.play();

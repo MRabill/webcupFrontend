@@ -223,7 +223,8 @@ const LandingPage = () => {
                       // marginTop: "50px",
                     }}
                   >
-                    Hey {user?.username}! Welcome to the League of Heroes
+                    Hey {user?.username}! <br />
+                    Welcome to the League of Heroes
                   </p>
                 </motion.div>
               </Col>
@@ -298,7 +299,7 @@ const LandingPage = () => {
               >
                 <p
                   style={{
-                    fontSize: "0.8rem",
+                    fontSize: "0.9rem",
                     fontFamily: "Orbitron",
                     color: "white",
                     marginTop: "20px",
