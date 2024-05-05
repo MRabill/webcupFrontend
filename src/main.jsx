@@ -10,6 +10,7 @@ import Profile from "./Pages/Profile";
 import logoWebcup from "./Assets/logoWebcup.png";
 
 import teleport from "./Assets/teleport.mp3";
+import Library from "./Pages/Library";
 
 const queryClient = new QueryClient();
 
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <RegisterPage />,
+  },
+  {
+    path: "/library",
+    element: <Library />,
   },
 ]);
 
