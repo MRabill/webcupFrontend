@@ -4,9 +4,12 @@ import { twMerge } from "tailwind-merge";
 import { FiMapPin } from "react-icons/fi";
 import { Button, Modal } from "antd";
 import { FaRegLightbulb, FaTrophy, FaCheckCircle } from "react-icons/fa";
-import backgroundSound from "../Assets/hawken.mp3";
+import sword from "../Assets/sword.mp3";
 import "../Styles/landingPage.css";
 
+const swordSound = new Audio(sword);
+
+swordSound.loop = false;
 
 const TrainingComponent = ({ onChangeAvatar, selectedAvatar }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -186,7 +189,7 @@ const TrainingComponent = ({ onChangeAvatar, selectedAvatar }) => {
           <span className="kave-line"></span>
           Join the Adventure</button>
         <button className="kave-btn"
-          onClick={() => setIsModalVisible(true) && swordSound.play()}>
+          onClick={onChangeAvatar}>
           <span className="kave-line"></span>
           Galactic Guides</button>      </div>
       {/* Modal */}
