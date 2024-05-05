@@ -14,8 +14,7 @@ import squadBook from "../assets/squadBook.png";
 import backgroundSound from "../Assets/hawken.mp3";
 import { useOverlay } from "../Context/OverlayContext";
 import { useUser } from "../Context/UserContext";
-import { url, useMutation, postData, useQuery, fetchData } from "../../utils";
-
+import { url, useMutation, postData, useQuery, fetchData, useQueryClient} from "../../utils";
 
 
 const UserProfile = () => {
@@ -38,7 +37,6 @@ const UserProfile = () => {
     }
   );
 
-  console.log(heros?.payload)
 
  
   return (
@@ -190,6 +188,7 @@ export default UserProfile;
 const NewForm = () => {
   const { overlay, setIsOpen } = useOverlay();
 
+  const queryClient = useQueryClient()
   const { user, signing, logout } = useUser();
   console.log(user);
   const onFinish = (event) => {
@@ -198,6 +197,18 @@ const NewForm = () => {
     const data = Object.fromEntries(formData.entries());
     saveDetails.mutate(data);
   };
+
+  const { isLoading: heroLoading, data: heros = {}, refetch } = useQuery(
+    ["developers-detail"],
+    () => fetchData({ url: url?.GET_DETAILS(user?.username) }),
+
+    { refetchOnWindowFocus: false },
+    {
+      onError: (e) => {
+        console.log("Error fetching developers: ", e);
+      },
+    }
+  );
 
   const saveDetails = useMutation(
     async (values) =>
@@ -218,7 +229,7 @@ const NewForm = () => {
             content: "Login Successful. Welcome to the League of Heroes!",
             okText: "Continue",
             onOk: () => {
-             
+              queryClient.invalidateQueries('developers-detail')
             },
             onCancel: () => {
              
@@ -263,9 +274,7 @@ const NewForm = () => {
                 <input
                   id="email"
                   name="weakness"
-                 
-                 
-                 
+                 defaultValue={heros?.payload?.weakness}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   style={{
                     fontFamily: "Poppins",
@@ -289,7 +298,7 @@ const NewForm = () => {
                 <input
                   id="email"
                   name="goal"
-                 
+                  defaultValue={heros?.payload?.goals}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   style={{
                     fontFamily: "Poppins",
@@ -313,6 +322,7 @@ const NewForm = () => {
                   id="email"
                   name="equipment"
                 
+                  defaultValue={heros?.payload?.equipment}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   style={{
                     fontFamily: "Poppins",

@@ -2,7 +2,7 @@ import useDebounce from "./useDebounce";
 import ColumnSearchProp from "./ColumnSearchProp";
 import TableSortFilter from "./TableSortFilter";
 import dateFormatter from "./dateFormatter";
-import { useQuery, useMutation } from "react-query";
+import { useQuery, useMutation,  useQueryClient, } from "react-query";
 import { fetchData, postData } from "./apiFunctions";
 import Lottie from "react-lottie";
 import url from "./url";
@@ -13,6 +13,7 @@ import {
   useParams,
   useNavigate,
   useLocation,
+
 } from "react-router-dom";
 
 export {
@@ -31,4 +32,5 @@ export {
   url,
   Lottie,
   useMutation,
+  useQueryClient
 };
