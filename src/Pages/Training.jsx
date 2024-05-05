@@ -1,15 +1,15 @@
+// Training.jsx
+
 import React, { useState } from "react";
 import { Row, Col, Button } from "antd";
 import "../styles/Training.css";
-import AvatarsCanvas from "../Components/canvas/avatar";
 import Avatars4Canvas from "../Components/canvas/avatar4";
 import Avatars5Canvas from "../Components/canvas/avatar5";
-import backgroundImage from "../Assets/background/backgroundImage.jpg";
 import StarsCanvas from "../Components/canvas/Stars";
 import TrainingComponent from "../Components/TrainingComponent";
 
 const Training = () => {
-  const [selectedAvatar, setSelectedAvatar] = useState("avatar5"); // Make sure it's correctly set to "avatar5"
+  const [selectedAvatar, setSelectedAvatar] = useState("avatar5");
 
   const handleAvatarClick = (avatarType) => {
     setSelectedAvatar(avatarType);
@@ -23,26 +23,16 @@ const Training = () => {
 
   return (
     <>
-      {/* Background image */}
-      <img
-        src={backgroundImage}
-        style={{
-          position: "absolute",
-          height: "100vh",
-          width: "100%",
-          zIndex: "-1000",
-        }}
-        alt="background"
-      />
+      <div className="background" />
 
       {/* Stars animation */}
-      <div className=" relativve z-1000">
+      <div className="relativve z-1000">
         <StarsCanvas />
       </div>
 
       {/* Main content */}
       <div className="training-container">
-        <Col lg={8}>
+        <Col lg={8} md={24} xs={24}>
           <div className="left-section">
             <div className="flex justify-between items-center h-screen">
               {/* Render the selected avatar */}
@@ -52,7 +42,7 @@ const Training = () => {
             </div>
           </div>
         </Col>
-        <Col lg={16}>
+        <Col lg={16} md={24} xs={24}>
           <div className="right-section">
             <Row>
               {/* Render the TrainingComponent passing selectedAvatar */}

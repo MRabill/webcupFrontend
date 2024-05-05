@@ -1,3 +1,15 @@
+/* Training.css */
+
+.background {
+  width: 100vw;
+  height: 100vh;
+  background: #131225;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1000;
+}
+
 .training-container {
   display: flex;
   justify-content: center;
@@ -9,12 +21,37 @@
   position: relative;
 }
 
-
 .avatar-selection-card {
   cursor: pointer;
-  border: 2px solid; 
+  border: 2px solid;
   border-radius: 5px;
   padding: 10px;
   margin-bottom: 10px;
   transition: border-color 0.3s ease;
+}
+
+/* Media queries */
+@media only screen and (max-width: 768px) {
+  .left-section {
+    display: none;
+  }
+
+  .right-section {
+    width: 100%;
+  }
+
+  .training-container {
+    flex-direction: column;
+    height: auto;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .training-container {
+    justify-content: space-between;
+  }
+
+  /* .right-section {
+    max-width: 60%;
+  } */
 }

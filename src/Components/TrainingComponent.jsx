@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 import { FiMapPin } from "react-icons/fi";
-import { Button, Modal } from "antd"; // Import Button and Modal from antd
-import { FaRegLightbulb, FaTrophy, FaCheckCircle } from "react-icons/fa"; // Import icons for mentor, ranking, and mission completed
+import { Button, Modal } from "antd";
+import { FaRegLightbulb, FaTrophy, FaCheckCircle } from "react-icons/fa";
+import backgroundSound from "../Assets/hawken.mp3";
+import "../Styles/landingPage.css";
+
 
 const TrainingComponent = ({ onChangeAvatar, selectedAvatar }) => {
-  const [isModalVisible, setIsModalVisible] = useState(false); // State to manage modal visibility
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const Block = ({ className, ...rest }) => {
     return (
@@ -33,13 +36,12 @@ const TrainingComponent = ({ onChangeAvatar, selectedAvatar }) => {
           "col-span-4 rounded-lg border border-zinc-700 p-6",
           className
         )}
-        style={{ opacity: "0.5" }} // Set opacity
+        style={{ opacity: "0.5" }}
         {...rest}
       />
     );
   };
 
-  // Details for each mentor
   const mentors = {
     avatar4: {
       mission: "Save the World",
@@ -51,50 +53,45 @@ const TrainingComponent = ({ onChangeAvatar, selectedAvatar }) => {
       power: "Telekinesis, Mind Control",
       rank: "A",
     },
-    // Add details for more mentors if needed
   };
 
   const AboutUsBlock = () => {
     let title, content;
     switch (selectedAvatar) {
       case "avatar4":
-        title = "Training Superheroes";
+        title = "Superhero Training Academy";
         content = (
           <>
-            My passion is training superheroes to reach their full potential.
+            Welcome to the prestigious Superhero Training Academy, where ordinary individuals become extraordinary defenders of justice!
             <br />
             <span
               className="text-gold-400"
               style={{
                 fontFamily: "Orbitron",
                 fontSize: "1.0rem",
-                color: "black", // Change font color to black
+                color: "black",
               }}
             >
-              I specialize in honing superpowers, combat techniques, and tactical
-              strategies. I have trained countless superheroes in mastering their
-              abilities to defend the world against evil forces.
+              Our mission is to nurture and unleash the full potential of aspiring superheroes, equipping them with the skills and wisdom to combat evil forces threatening our world.
             </span>
           </>
         );
         break;
       case "avatar5":
-        title = "Empowering Heroes";
+        title = "Empowerment Institute";
         content = (
           <>
-            My mission is to foster peace and harmony through empathy and understanding.
+            Step into the Empowerment Institute, a beacon of hope and unity in a world of chaos and division.
             <br />
             <span
               className="text-gold-400"
               style={{
                 fontFamily: "Orbitron",
                 fontSize: "1.0rem",
-                color: "black", // Change font color to black
+                color: "black",
               }}
             >
-              I dedicate myself to bridging the gap between different worlds, promoting unity
-              and cooperation among all beings. Together, we can build a better future for
-              generations to come.
+              Our dedication lies in fostering empathy, understanding, and unity among all beings. Together, we can create a brighter future for generations to come.
             </span>
           </>
         );
@@ -109,7 +106,7 @@ const TrainingComponent = ({ onChangeAvatar, selectedAvatar }) => {
         <p
           style={{
             fontFamily: "Orbitron",
-            color: "black", // Change font color to black
+            color: "black",
           }}
         >
           <strong>{title}</strong>
@@ -136,20 +133,20 @@ const TrainingComponent = ({ onChangeAvatar, selectedAvatar }) => {
     return (
       <>
         <Block className="col-span-12 flex flex-col items-center gap-4 md:col-span-3" style={{ background: "rgba(255, 255, 255, 0.5)" }}>
-          <FiMapPin className="text-4xl" /> {/* Increase icon size */}
-          <p className="text-center text-lg text-zinc-400" style={{ color: "black" }}>Superhero Classes Location: {location}</p>
+          <FiMapPin className="text-4xl" />
+          <p className="text-center text-lg text-zinc-400" style={{ color: "black" }}>Superhero Academy Location: {location}</p>
         </Block>
         <div className="col-span-12 flex items-center gap-4 md:col-span-9">
           <div className="flex flex-col items-center gap-2">
-            <FaRegLightbulb className="text-6xl text-white mb-2" /> {/* Increase icon size and add margin bottom */}
+            <FaRegLightbulb className="text-6xl text-white mb-2" />
             <span className="text-white font-bold" style={{ fontFamily: "Orbitron" }}>Mission: {mentors[selectedAvatar].mission}</span>
           </div>
           <div className="flex flex-col items-center gap-2">
-            <FaTrophy className="text-6xl text-white mb-2" /> {/* Increase icon size and add margin bottom */}
+            <FaTrophy className="text-6xl text-white mb-2" />
             <span className="text-white font-bold" style={{ fontFamily: "Orbitron" }}>Power: {mentors[selectedAvatar].power}</span>
           </div>
           <div className="flex flex-col items-center gap-2">
-            <FaCheckCircle className="text-6xl text-white mb-2" /> {/* Increase icon size and add margin bottom */}
+            <FaCheckCircle className="text-6xl text-white mb-2" />
             <span className="text-white font-bold" style={{ fontFamily: "Orbitron" }}>Rank: {mentors[selectedAvatar].rank}</span>
           </div>
         </div>
@@ -161,18 +158,17 @@ const TrainingComponent = ({ onChangeAvatar, selectedAvatar }) => {
     return <footer className="mt-12"></footer>;
   };
 
-  // Modal Content Component
   const ModalContent = () => {
     return (
       <div style={{ textAlign: "center" }}>
-        <h2 style={{ fontFamily: "Orbitron", fontSize: "2rem", marginBottom: "20px" }}>Join My Course</h2>
+        <h2 style={{ fontFamily: "Orbitron", fontSize: "2rem", marginBottom: "20px" }}>Enroll Now!</h2>
         <p style={{ color: "black", fontSize: "1.2rem" }}>Unlock your potential and become a true hero!</p>
       </div>
     );
   };
 
   return (
-    <div className="min-h-screen  px-4 py-12 text-zinc-50">
+    <div className="min-h-screen px-4 py-12 text-zinc-50">
       <motion.div
         initial="initial"
         animate="animate"
@@ -185,9 +181,14 @@ const TrainingComponent = ({ onChangeAvatar, selectedAvatar }) => {
         <LocationBlock />
       </motion.div>
       <div style={{ textAlign: "right" }}>
-        <Button onClick={() => setIsModalVisible(true)} style={{ color: "white", fontWeight: "bold",  marginRight: "10px",}}>Join My Course</Button>
-        <Button onClick={onChangeAvatar} style={{ color: "white", fontWeight: "bold" }}>Mentors</Button>
-      </div>
+        <button className="kave-btn" style ={{marginRight:"15px"}}
+          onClick={() => setIsModalVisible(true) && swordSound.play()}>
+          <span className="kave-line"></span>
+          Join the Adventure</button>
+        <button className="kave-btn"
+          onClick={() => setIsModalVisible(true) && swordSound.play()}>
+          <span className="kave-line"></span>
+          Galactic Guides</button>      </div>
       {/* Modal */}
       <Modal
         title={null}
@@ -195,7 +196,7 @@ const TrainingComponent = ({ onChangeAvatar, selectedAvatar }) => {
         onCancel={() => setIsModalVisible(false)}
         footer={null}
         centered
-        maskStyle={{ background: "linear-gradient(90deg, rgba(37,26,79,1) 5%, rgba(85,60,181,1) 100%)", opacity: "0.5" }} // Add background style
+        maskStyle={{ background: "linear-gradient(90deg, rgba(37,26,79,1) 5%, rgba(85,60,181,1) 100%)", opacity: "0.5" }}
         bodyStyle={{ padding: "40px" }}
         width={400}
       >
