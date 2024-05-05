@@ -40,7 +40,7 @@ const UserProfile = () => {
 
  
   return (
-    <div className=" flex justify-between items-center ">
+    <div className="flex flex-col md:flex-row justify-center items-center">
       <div className="absolute top-13 sm:top-13 md:top-16 lg:top-22 xl:top-26 right-1 sm:right-3 md:right-5 lg:right-9 xl:right-13 z-50">
         <button
           style={{ height: "50px", marginTop: "20px" }}
@@ -59,7 +59,7 @@ const UserProfile = () => {
         animate={{ x: 0 }}
         exit={{ x: "-100%" }}
         transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.5 }}
-        className="relative bg-151031 p-5 rounded-2xl sm:w-[480px] w-full mr-4 "
+        className="relative bg-151031 p-5 rounded-2xl md:w-[480px] w-full mr-4 "
       >
         <Tilt className="Tilt" options={{ max: 45, scale: 1.1 }}>
           <div
@@ -126,10 +126,9 @@ const UserProfile = () => {
         }}
         exit={{ y: "-100%" }}
         transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.6 }}
+        className="flex justify-center items-center h-screen "
       >
-        <div className="flex justify-center items-center h-screen ">
-          <AvatarsCanvas />
-        </div>
+        <AvatarsCanvas />
       </motion.div>
 
       {/* Right card */}
@@ -138,7 +137,7 @@ const UserProfile = () => {
         animate={{ x: 0 }}
         exit={{ x: "100%" }}
         transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.5 }}
-        className="bg-151031 p-5 rounded-2xl sm:w-[480px] w-full mr-4 "
+        className="bg-151031 p-5 rounded-2xl md:w-[480px] w-full mr-4 "
       >
         <Tilt className="Tilt" options={{ max: 45, scale: 1.1 }}>
           <div
@@ -361,3 +360,4 @@ const NewForm = () => {
     </div>
   );
 };
+
