@@ -5,11 +5,13 @@ import InfiniteStones from "../Components/canvas/infinitestones";
 import StarsCanvas from "../Components/canvas/Stars";
 import { useUser } from "../Context/UserContext";
 import background from "../Assets/landingPage.jpg";
-
+import backgroundSound from "../Assets/paper.mp3";
 
 const Library = () => {
     const { user, signing, logout } = useUser();
-
+    const audio = new Audio(backgroundSound);
+    audio.loop = true;
+    audio.play();
     // Dummy data for superhero news
     const superheroNews = [
         {
