@@ -55,7 +55,7 @@ const Library = () => {
             </div>
 
             <div className="min-h-screen relative">
-                {user?.username !== "" ? (
+                {user?.username !== "" && user?.username ? (
                     <div className="relative z-10">
                         {/* StarsCanvas
                         <div className="absolute inset-0 z-0">
