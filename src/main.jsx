@@ -107,7 +107,7 @@ const Header = () => {
                 fontSize: "0.8rem",
               }}
             >
-              Vigilant Ventures Institute VVI
+              Vigilant Ventures Institute
             </span>
           </a>
           <div className="flex items-center lg:order-2">
@@ -156,7 +156,7 @@ const Header = () => {
                 fontSize: "0.8rem",
               }}
             >
-              Vigilant Ventures Institute VVI
+              Vigilant Ventures Institute
             </span>
           </a>
           <div className="flex items-center lg:order-2">
