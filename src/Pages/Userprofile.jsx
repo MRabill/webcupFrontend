@@ -245,7 +245,7 @@ const NewForm = () => {
         overlay({
           type: "warning",
           title: "Failed",
-          content: "Login Attempt Failed. Please try again.",
+          content: "Profile Update Failed. Please try again",
 
           onOk: () => {
             // logout();

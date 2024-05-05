@@ -19,6 +19,19 @@ const TrainingComponent = ({ onChangeAvatar, selectedAvatar }) => {
   const { overlay, setIsOpen } = useOverlay();
   const { user, signing, logout } = useUser();
 
+  const trainingAcademies = [
+    "Superhero Training Academy",
+    "Heroic Institute",
+    "Guardians Academy",
+    "Justice League Training Center",
+    "Legendary Heroes Academy",
+    "Champion Training Grounds",
+    "Epic Heroes Institute",
+    "Mystic Heroic Academy",
+    "Elite Defender Training Facility",
+    "Ultimate Heroes Institute"
+  ];
+
   const saveTraining = useMutation(
     async (values) =>
       await postData({
@@ -254,6 +267,17 @@ const TrainingComponent = ({ onChangeAvatar, selectedAvatar }) => {
     );
   };
 
+  const getRandomTraining = () => {
+    const randomIndex = Math.floor(Math.random() * trainingAcademies.length);
+    return trainingAcademies[randomIndex];
+  };
+
+  const handleJoinAdventure = () => {
+    const training = getRandomTraining();
+    console.log("Selected training:", training);
+    saveTraining.mutate({ training });
+  };
+
   return (
     <div className="min-h-screen px-4 py-12 text-zinc-50">
       <motion.div
@@ -271,11 +295,7 @@ const TrainingComponent = ({ onChangeAvatar, selectedAvatar }) => {
         <button
           className="kave-btn"
           style={{ marginRight: "15px" }}
-          onClick={() => {
-            saveTraining.mutate({
-              training: "Superhero Training Academy",
-            });
-          }}
+          onClick={handleJoinAdventure}
         >
           <span className="kave-line"></span>
           Join the Adventure
