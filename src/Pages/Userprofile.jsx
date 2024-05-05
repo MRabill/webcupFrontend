@@ -100,25 +100,7 @@ const UserProfile = () => {
                 />
               </Tilt>
               {/* Button */}
-              <button
-                className="absolute top-0 right-0 mt-4 mr-4 px-4 py-2 bg-white text-black rounded-lg shadow"
-                onClick={() => {
-                  overlay({
-                    type: "form",
-                    title: "Edit Profile",
-                    content: "Please fill the form below",
-                    form: NewForm,
-                    onOk: () => {
-                      console.log("Okay");
-                    },
-                    onCancel: () => {
-                      console.log("Cancel");
-                    },
-                  });
-                }}
-              >
-                Edit
-              </button>
+              
             </div>
           </Tilt>
         </motion.div>
@@ -184,6 +166,25 @@ const UserProfile = () => {
                   className="w-full h-full object-cover rounded-2xl'"
                 />
               </Tilt>
+              <button
+                className="absolute top-0 right-0 mt-4 mr-4 px-4 py-2 bg-white text-black rounded-lg shadow"
+                onClick={() => {
+                  overlay({
+                    type: "form",
+                    title: "Edit Profile",
+                    content: "Please fill the form below",
+                    form: NewForm,
+                    onOk: () => {
+                      console.log("Okay");
+                    },
+                    onCancel: () => {
+                      console.log("Cancel");
+                    },
+                  });
+                }}
+              >
+                Edit
+              </button>
             </div>
           </Tilt>
         </motion.div>

@@ -14,7 +14,7 @@ const Profile = () => {
   const navigate = useNavigate();
   return (
     <div>
-      {user?.username !== "" ? (
+      {user?.username !== "" && user?.username ? (
         <>
           <div
             style={{
